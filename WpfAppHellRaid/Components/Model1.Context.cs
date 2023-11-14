@@ -13,10 +13,10 @@ namespace WpfAppHellRaid.Components
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FromHellEntities : DbContext
+    public partial class SpecialForWPFSafEntities : DbContext
     {
-        public FromHellEntities()
-            : base("name=FromHellEntities")
+        public SpecialForWPFSafEntities()
+            : base("name=SpecialForWPFSafEntities")
         {
         }
     

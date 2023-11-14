@@ -14,6 +14,6 @@ namespace WpfAppHellRaid
     /// </summary>
     public partial class App : Application
     {
-        public static FromHellEntities DataBase = new FromHellEntities();
+        public static SpecialForWPFSafEntities DataBase = new SpecialForWPFSafEntities();
     }
 }

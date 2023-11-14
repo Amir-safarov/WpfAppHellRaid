@@ -1,0 +1,51 @@
+﻿<Page x:Class="WpfAppHellRaid.Pages.ExamsList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppHellRaid.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="ExamsList">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="203*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock>Сортировка даты</TextBlock>
+                <ComboBox Name="DateSortCB" SelectionChanged="DateSortCB_SelectionChanged">
+                    <ComboBoxItem>По дате (ближайшие)</ComboBoxItem>
+                    <ComboBoxItem>По дате (поздние)</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20,0,0,0">
+                <TextBlock>Сортировка имен</TextBlock>
+                <ComboBox Name="NameSortCB" SelectionChanged="NameSortCB_SelectionChanged">
+                    <ComboBoxItem>В алфовитном порядке</ComboBoxItem>
+                    <ComboBoxItem>В обратном порядке</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20,0,0,0">
+                <TextBlock>Поиск</TextBlock>
+                <TextBox Name="SearchTB" Width="100" TextChanged="SearchTB_TextChanged"></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <Border BorderThickness="3" Grid.Row="1">
+            <ListView Name="ExamsListView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = ID}">№</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Discipline.ID}">Дисциплина</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Path= Employee.SFP}">Преподаватели</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Student.FIO}">Студент</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Mark}">Оценка</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Date_ex}">Дата</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+    </Grid>
+</Page>

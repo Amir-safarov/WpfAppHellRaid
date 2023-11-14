@@ -37,7 +37,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="ID_dep" Type="int" />
-          <Property Name="FIO" Type="nvarchar" MaxLength="100" />
+          <Property Name="SFP" Type="nvarchar" MaxLength="100" />
           <Property Name="ID_jt" Type="int" />
           <Property Name="Salary" Type="int" />
           <Property Name="Chef" Type="int" />
@@ -413,7 +413,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="ID_dep" Type="Int32" />
-          <Property Name="FIO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SFP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ID_jt" Type="Int32" />
           <Property Name="Salary" Type="Int32" />
           <Property Name="Chef" Type="Int32" />
@@ -691,7 +691,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FromHellEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SpecialForWPFSafEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AboutStudent" EntityType="Self.AboutStudent" />
           <EntitySet Name="Department" EntityType="Self.Department" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" />
@@ -767,7 +767,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="FromHellEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities">
           <EntitySetMapping Name="AboutStudent">
             <EntityTypeMapping TypeName="SpecialForWPFSafModel.AboutStudent">
               <MappingFragment StoreEntitySet="AboutStudent">
@@ -802,7 +802,7 @@
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_dep" ColumnName="ID_dep" />
-                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="SFP" ColumnName="SFP" />
                 <ScalarProperty Name="ID_jt" ColumnName="ID_jt" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Chef" ColumnName="Chef" />

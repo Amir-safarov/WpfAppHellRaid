@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppHellRaid"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+            Title="Вход" Height="960" Width="1280" MinHeight="960" MinWidth="1280" >
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="301*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="107*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.ColumnSpan="2" Fill="#8FAABB"></Rectangle>
+        <Rectangle Grid.RowSpan="2" Fill="#8FAABB"></Rectangle>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" Margin="10,776,10,0" Height="40">
+            <Button x:Name="BackBTN">Back</Button>
+        </StackPanel>
+
+        <TextBlock x:Name="TitleTb" Grid.Column="1">Вход</TextBlock>
+
+        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Margin="0,14,0,0" Grid.Row="1"/>
     </Grid>
 </Window>

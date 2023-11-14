@@ -22,7 +22,7 @@ namespace WpfAppHellRaid.Components
     
         public int ID { get; set; }
         public Nullable<int> ID_dep { get; set; }
-        public string FIO { get; set; }
+        public string SFP { get; set; }
         public Nullable<int> ID_jt { get; set; }
         public Nullable<int> Salary { get; set; }
         public Nullable<int> Chef { get; set; }

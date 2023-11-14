@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfAppHellRaid.Components;
+using WpfAppHellRaid.Pages;
 
 namespace WpfAppHellRaid
 {
@@ -23,6 +25,8 @@ namespace WpfAppHellRaid
         public MainWindow()
         {
             InitializeComponent();
+            ModernNavigation.mainWindow = this;
+            ModernNavigation.NextPage(new PageComponent("N",new ExamsList()));
         }
     }
 }
