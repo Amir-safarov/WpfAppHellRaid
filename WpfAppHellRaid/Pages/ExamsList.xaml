@@ -32,14 +32,16 @@
                 <TextBlock>Поиск</TextBlock>
                 <TextBox Name="SearchTB" Width="100" TextChanged="SearchTB_TextChanged"></TextBox>
             </StackPanel>
+             <Button x:Name="AddExam" Margin="20,5,5,0">Добавление экзамена</Button>
+            
         </StackPanel>
         <Border BorderThickness="3" Grid.Row="1">
-            <ListView Name="ExamsListView">
+            <ListView Name="ExamsListView" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = ID}">№</GridViewColumn>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Discipline.ID}">Дисциплина</GridViewColumn>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Path= Employee.SFP}">Преподаватели</GridViewColumn>
+                        <GridViewColumn  Header="Преподаватели" Width="150" DisplayMemberBinding= "{Binding Employee.SFP}"></GridViewColumn>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Student.FIO}">Студент</GridViewColumn>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Mark}">Оценка</GridViewColumn>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Date_ex}">Дата</GridViewColumn>

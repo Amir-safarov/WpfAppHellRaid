@@ -26,10 +26,10 @@ namespace WpfAppHellRaid.Pages
         public ExamsList()
         {
             InitializeComponent();
-            
-            
+   
             ListRefresh();
             ExamsListView.ItemsSource = App.DataBase.Exasm.ToList();
+
         }
 
         private void DateSortCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,6 +60,14 @@ namespace WpfAppHellRaid.Pages
                 ExamsListView.ItemsSource = database.OrderBy(x => x.Student.FIO).ToList();
             if(NameSortCB.SelectedIndex == 1)
                 ExamsListView.ItemsSource = database.OrderByDescending(x => x.Student.FIO).ToList();
+            if (SearchTB.Text != "" || SearchTB.Text != null)
+            {
+                ExamsListView.ItemsSource = database.Where(x => x.Student.FIO.ToLower().Contains(SearchTB.Text.ToLower())).ToList();
+            }
+            if(SearchTB.Text == "" || SearchTB.Text == null)
+                view.Refresh();
+
+
         }
     }
 }

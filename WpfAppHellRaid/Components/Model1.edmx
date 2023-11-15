@@ -691,7 +691,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SpecialForWPFSafEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SpecialForWPFSafEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AboutStudent" EntityType="Self.AboutStudent" />
           <EntitySet Name="Department" EntityType="Self.Department" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" />
@@ -767,7 +767,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities1">
           <EntitySetMapping Name="AboutStudent">
             <EntityTypeMapping TypeName="SpecialForWPFSafModel.AboutStudent">
               <MappingFragment StoreEntitySet="AboutStudent">

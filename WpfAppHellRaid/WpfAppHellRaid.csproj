@@ -131,12 +131,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ExamAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ExamsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\ExamAdd.xaml.cs">
+      <DependentUpon>ExamAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ExamsList.xaml.cs">
       <DependentUpon>ExamsList.xaml</DependentUpon>
     </Compile>
