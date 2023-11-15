@@ -28,7 +28,7 @@ namespace WpfAppHellRaid.Pages
             InitializeComponent();
    
             ListRefresh();
-            ExamsListView.ItemsSource = App.DataBase.Exasm.ToList();
+            ExamsListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true).ToList();
 
         }
 
@@ -48,26 +48,40 @@ namespace WpfAppHellRaid.Pages
         }
         private void ListRefresh()
         {
-            var database = App.DataBase.Exasm;
+            var database = App.DataBase.Exasm.Where(x => x.ExamEnable == true);
             ICollectionView view = CollectionViewSource.GetDefaultView(database.ToList());
-            view.Refresh();
 
             if (DateSortCB.SelectedIndex == 0)
+            {
                 ExamsListView.ItemsSource = database.OrderBy(x => x.Date_ex).ToList();
+            }
             if (DateSortCB.SelectedIndex == 1)
+            {
                 ExamsListView.ItemsSource = database.OrderByDescending(x => x.Date_ex).ToList();
+            }
             if(NameSortCB.SelectedIndex == 0)
+            {
                 ExamsListView.ItemsSource = database.OrderBy(x => x.Student.FIO).ToList();
+            }
             if(NameSortCB.SelectedIndex == 1)
+            {
                 ExamsListView.ItemsSource = database.OrderByDescending(x => x.Student.FIO).ToList();
-            if (SearchTB.Text != "" || SearchTB.Text != null)
+            }
+            if (SearchTB.Text != "" & SearchTB.Text != null)
             {
                 ExamsListView.ItemsSource = database.Where(x => x.Student.FIO.ToLower().Contains(SearchTB.Text.ToLower())).ToList();
             }
-            if(SearchTB.Text == "" || SearchTB.Text == null)
-                view.Refresh();
+
+            view.Refresh();
+            /*if(SearchTB.Text == "" || SearchTB.Text == null)
+                view.Refresh();*/
 
 
+        }
+
+        private void AddExam_Click(object sender, RoutedEventArgs e)
+        {
+            ModernNavigation.NextPage(new PageComponent("N", new ExamAdd(new Exasm())));
         }
     }
 }

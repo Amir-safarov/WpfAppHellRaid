@@ -21,6 +21,7 @@ namespace WpfAppHellRaid.Components
 
         private static void Update(PageComponent page)
         {
+            mainWindow.TitleTb.Text = page.Title;
             mainWindow.BackBTN.Visibility = storylist.Count() > 1 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
             mainWindow.MainFrame.Navigate(page.Page);
         }
