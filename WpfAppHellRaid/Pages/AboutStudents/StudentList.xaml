@@ -17,14 +17,14 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <TextBlock>Сортировка специальностей</TextBlock>
                 <ComboBox Name="SpecSortCB" SelectionChanged="SpecSortCB_SelectionChanged">
-                    <ComboBoxItem>В алфовитном порядке</ComboBoxItem>
+                    <ComboBoxItem>В алфавитном порядке</ComboBoxItem>
                     <ComboBoxItem>В обратном порядке</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20,0,0,0">
                 <TextBlock>Сортировка имен</TextBlock>
                 <ComboBox Name="NameSortCB" SelectionChanged="NameSortCB_SelectionChanged">
-                    <ComboBoxItem>В алфовитном порядке</ComboBoxItem>
+                    <ComboBoxItem>В алфавитном порядке</ComboBoxItem>
                     <ComboBoxItem>В обратном порядке</ComboBoxItem>
                 </ComboBox>
             </StackPanel>

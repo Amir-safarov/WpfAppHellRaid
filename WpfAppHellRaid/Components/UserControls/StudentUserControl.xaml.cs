@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfAppHellRaid.Pages.AboutStudents;
 
 namespace WpfAppHellRaid.Components.UserControls
 {
@@ -21,6 +22,7 @@ namespace WpfAppHellRaid.Components.UserControls
     public partial class StudentUserControl : UserControl
     {
         private Student _student;
+        private bool _canLookExtraInfo = false;
         public StudentUserControl(Student student)
         {
             InitializeComponent();
@@ -31,6 +33,27 @@ namespace WpfAppHellRaid.Components.UserControls
             Stud_FIO_TB.Text = $"Инициалы студента: {_student.FIO}";
             PastStudPlace_TB.Text = $"{_student.AboutStudent.School.SchoolTitle.Title_name} №{_student.AboutStudent.School.SchoolNumber}";
             AverageSchoolMark_TB.Text = $"Балл атестата: {_student.AboutStudent.Average_Mark}";
+           
+            ExtrainfoSP.Visibility = _canLookExtraInfo == true ? Visibility.Visible : Visibility.Hidden;
+        }
+
+        private void Edit_BTN_Click(object sender, RoutedEventArgs e)
+        {
+            ModernNavigation.NextPage(new PageComponent("Редактирование сведений о студенте", new StudentEdit(_student)));
+        }
+
+        private void Remove_BTN_Click(object sender, RoutedEventArgs e)
+        {
+            _student.StudEnable = false;
+            App.DataBase.SaveChanges();
+            MessageBox.Show("Успешно удалено");
+            ModernNavigation.NextPage(new PageComponent("Список студентов", new StudentList()));
+        }
+
+        private void EnableExtraInfo_BTN_Click(object sender, RoutedEventArgs e)
+        {
+            _canLookExtraInfo = _canLookExtraInfo == false ? true: false;
+            ExtrainfoSP.Visibility = _canLookExtraInfo == true ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }

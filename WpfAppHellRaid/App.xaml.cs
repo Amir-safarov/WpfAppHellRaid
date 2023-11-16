@@ -14,6 +14,8 @@ namespace WpfAppHellRaid
     /// </summary>
     public partial class App : Application
     {
-        public static SpecialForWPFSafEntities3 DataBase = new SpecialForWPFSafEntities3();
+        public static SpecialForWPFSafEntities4 DataBase = new SpecialForWPFSafEntities4();
+        public static bool isEmployee = false;
+        public static int userNumber;
     }
 }

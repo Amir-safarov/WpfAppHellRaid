@@ -19,7 +19,7 @@
         <Rectangle Grid.RowSpan="2" Fill="#8FAABB"></Rectangle>
 
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" Margin="10,776,10,0" Height="40">
-            <Button x:Name="BackBTN">Back</Button>
+            <Button x:Name="BackBTN" Click="BackBTN_Click">Back</Button>
         </StackPanel>
 
         <TextBlock x:Name="TitleTb" Grid.Column="1">Вход</TextBlock>

@@ -24,7 +24,6 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock Name="TitleTB" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">Добавление экзамена</TextBlock>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock>Номер экзамена:</TextBlock>
             <TextBox Width="100" Name="IDExTB"></TextBox>

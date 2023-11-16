@@ -13,10 +13,10 @@ namespace WpfAppHellRaid.Components
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SpecialForWPFSafEntities3 : DbContext
+    public partial class SpecialForWPFSafEntities4 : DbContext
     {
-        public SpecialForWPFSafEntities3()
-            : base("name=SpecialForWPFSafEntities3")
+        public SpecialForWPFSafEntities4()
+            : base("name=SpecialForWPFSafEntities4")
         {
         }
     
@@ -37,5 +37,6 @@ namespace WpfAppHellRaid.Components
         public virtual DbSet<SchoolTitle> SchoolTitle { get; set; }
         public virtual DbSet<Speciality> Speciality { get; set; }
         public virtual DbSet<Student> Student { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

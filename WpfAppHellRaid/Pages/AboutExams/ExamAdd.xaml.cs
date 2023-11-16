@@ -21,31 +21,37 @@ namespace WpfAppHellRaid.Pages
     /// </summary>
     public partial class ExamAdd : Page
     {
-        private Exasm exam;
+        private Exasm _exam;
+        private Student student;
+
         public ExamAdd(Exasm exam)
         {
-            this.exam = exam;
+            this._exam = exam;
 
             this.DataContext = exam;
 
             InitializeComponent();
         }
 
+        public ExamAdd(Student student)
+        {
+            this.student = student;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            exam.ID = int.Parse(IDExTB.Text);
-            exam.ID_empl = int.Parse(IDEmplTB.Text);
-            exam.ID_dis = int.Parse(IDDisTB.Text);
-            exam.ID_stud = int.Parse(IDStudTB.Text);
-            exam.Audit = AuditTB.Text;
-            exam.Date_ex = DateTime.Parse(DateExPicker.Text);
-            exam.Mark = int.Parse(MarkTB.Text);
-            exam.ExamEnable = true;
-            App.DataBase.Exasm.Add(exam);
+            _exam.ID = int.Parse(IDExTB.Text);
+            _exam.ID_empl = int.Parse(IDEmplTB.Text);
+            _exam.ID_dis = int.Parse(IDDisTB.Text);
+            _exam.ID_stud = int.Parse(IDStudTB.Text);
+            _exam.Audit = AuditTB.Text;
+            _exam.Date_ex = DateTime.Parse(DateExPicker.Text);
+            _exam.Mark = int.Parse(MarkTB.Text);
+            _exam.ExamEnable = true;
+            App.DataBase.Exasm.Add(_exam);
             App.DataBase.SaveChanges();
             MessageBox.Show("Yzbek");
             ModernNavigation.NextPage(new PageComponent("Список экзаменов", new ExamsList()));
-
         }
         private void OnlyDigits_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

@@ -114,6 +114,16 @@
           <Property Name="FIO" Type="nvarchar" MaxLength="100" />
           <Property Name="StudEnable" Type="bit" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <Association Name="FK_AboutStudent_School">
           <End Role="School" Type="Self.School" Multiplicity="0..1" />
           <End Role="AboutStudent" Type="Self.AboutStudent" Multiplicity="*" />
@@ -299,6 +309,7 @@
           <EntitySet Name="SchoolTitle" EntityType="Self.SchoolTitle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AboutStudent_School" Association="Self.FK_AboutStudent_School">
             <End Role="School" EntitySet="School" />
             <End Role="AboutStudent" EntitySet="AboutStudent" />
@@ -498,6 +509,16 @@
           <NavigationProperty Name="Exasm" Relationship="Self.FK_Exasm_Student" FromRole="Student" ToRole="Exasm" />
           <NavigationProperty Name="Speciality" Relationship="Self.FK_Student_Speciality" FromRole="Student" ToRole="Speciality" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <Association Name="FK_AboutStudent_School">
           <End Role="School" Type="Self.School" Multiplicity="0..1" />
           <End Role="AboutStudent" Type="Self.AboutStudent" Multiplicity="*" />
@@ -670,7 +691,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SpecialForWPFSafEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SpecialForWPFSafEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AboutStudent" EntityType="Self.AboutStudent" />
           <EntitySet Name="Department" EntityType="Self.Department" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" />
@@ -683,6 +704,7 @@
           <EntitySet Name="SchoolTitle" EntityType="Self.SchoolTitle" />
           <EntitySet Name="Speciality" EntityType="Self.Speciality" />
           <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK_AboutStudent_School" Association="Self.FK_AboutStudent_School">
             <End Role="School" EntitySet="School" />
             <End Role="AboutStudent" EntitySet="AboutStudent" />
@@ -745,7 +767,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities3">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities4">
           <EntitySetMapping Name="AboutStudent">
             <EntityTypeMapping TypeName="SpecialForWPFSafModel.AboutStudent">
               <MappingFragment StoreEntitySet="AboutStudent">
@@ -864,6 +886,17 @@
                 <ScalarProperty Name="ID_spec" ColumnName="ID_spec" />
                 <ScalarProperty Name="FIO" ColumnName="FIO" />
                 <ScalarProperty Name="StudEnable" ColumnName="StudEnable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SpecialForWPFSafModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

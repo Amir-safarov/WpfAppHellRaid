@@ -27,7 +27,12 @@ namespace WpfAppHellRaid
         {
             InitializeComponent();
             ModernNavigation.mainWindow = this;
-            ModernNavigation.NextPage(new PageComponent("Список студентов",new StudentList()));
+            ModernNavigation.NextPage(new PageComponent("Авторизация",new ListsMenu()));
+        }
+
+        private void BackBTN_Click(object sender, RoutedEventArgs e)
+        {
+            ModernNavigation.BackPage();
         }
     }
 }
