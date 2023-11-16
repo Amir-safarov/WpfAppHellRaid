@@ -73,15 +73,11 @@ namespace WpfAppHellRaid.Pages
             }
 
             view.Refresh();
-            /*if(SearchTB.Text == "" || SearchTB.Text == null)
-                view.Refresh();*/
-
-
         }
 
         private void AddExam_Click(object sender, RoutedEventArgs e)
         {
-            ModernNavigation.NextPage(new PageComponent("N", new ExamAdd(new Exasm())));
+            ModernNavigation.NextPage(new PageComponent("Добавить новую запись экзамена", new ExamAdd(new Exasm())));
         }
     }
 }

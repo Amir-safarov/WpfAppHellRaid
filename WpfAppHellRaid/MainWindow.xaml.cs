@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfAppHellRaid.Components;
 using WpfAppHellRaid.Pages;
+using WpfAppHellRaid.Pages.AboutStudents;
 
 namespace WpfAppHellRaid
 {
@@ -26,7 +27,7 @@ namespace WpfAppHellRaid
         {
             InitializeComponent();
             ModernNavigation.mainWindow = this;
-            ModernNavigation.NextPage(new PageComponent("N",new ExamsList()));
+            ModernNavigation.NextPage(new PageComponent("Список студентов",new StudentList()));
         }
     }
 }
