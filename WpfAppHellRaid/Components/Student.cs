@@ -24,6 +24,7 @@ namespace WpfAppHellRaid.Components
         public Nullable<int> ID_spec { get; set; }
         public string FIO { get; set; }
         public Nullable<bool> StudEnable { get; set; }
+        public Nullable<int> ID_info { get; set; }
     
         public virtual AboutStudent AboutStudent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

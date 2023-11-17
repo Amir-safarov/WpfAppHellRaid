@@ -7,9 +7,9 @@
       <Schema Namespace="Хранилище SpecialForWPFSafModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AboutStudent">
           <Key>
-            <PropertyRef Name="ID_stud" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID_stud" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_school" Type="int" />
           <Property Name="Average_Mark" Type="float" />
         </EntityType>
@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Abbreviation" Type="nvarchar" MaxLength="10" />
           <Property Name="Dep_Name" Type="nvarchar" MaxLength="100" />
           <Property Name="ID_fac" Type="int" />
@@ -26,7 +26,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Volume" Type="int" />
           <Property Name="ID_dep" Type="int" />
           <Property Name="DiscEnable" Type="bit" />
@@ -35,7 +35,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_dep" Type="int" />
           <Property Name="SFP" Type="nvarchar" MaxLength="100" />
           <Property Name="ID_jt" Type="int" />
@@ -50,7 +50,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date_ex" Type="date" />
           <Property Name="ID_dis" Type="int" />
           <Property Name="ID_stud" Type="int" />
@@ -63,7 +63,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Abbreviation" Type="nvarchar" MaxLength="50" />
           <Property Name="Name_Fac" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -71,14 +71,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name_jod_title" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_dis" Type="int" />
           <Property Name="ID_spec" Type="int" />
         </EntityType>
@@ -86,7 +86,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SchoolNumber" Type="int" />
           <Property Name="ID_scholl_title" Type="int" />
         </EntityType>
@@ -94,14 +94,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title_name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Speciality">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name_spec" Type="nvarchar" MaxLength="200" />
           <Property Name="ID_dep" Type="int" />
         </EntityType>
@@ -109,10 +109,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_spec" Type="int" />
           <Property Name="FIO" Type="nvarchar" MaxLength="100" />
           <Property Name="StudEnable" Type="bit" />
+          <Property Name="ID_info" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -133,18 +134,6 @@
             </Principal>
             <Dependent Role="AboutStudent">
               <PropertyRef Name="ID_school" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AboutStudent_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="AboutStudent" Type="Self.AboutStudent" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="AboutStudent">
-              <PropertyRef Name="ID_stud" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -284,6 +273,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Student_AboutStudent">
+          <End Role="AboutStudent" Type="Self.AboutStudent" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AboutStudent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ID_info" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Student_Speciality">
           <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
@@ -312,10 +313,6 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AboutStudent_School" Association="Self.FK_AboutStudent_School">
             <End Role="School" EntitySet="School" />
-            <End Role="AboutStudent" EntitySet="AboutStudent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AboutStudent_Student" Association="Self.FK_AboutStudent_Student">
-            <End Role="Student" EntitySet="Student" />
             <End Role="AboutStudent" EntitySet="AboutStudent" />
           </AssociationSet>
           <AssociationSet Name="FK_Department_Faculty" Association="Self.FK_Department_Faculty">
@@ -362,6 +359,10 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="Speciality" EntitySet="Speciality" />
           </AssociationSet>
+          <AssociationSet Name="FK_Student_AboutStudent" Association="Self.FK_Student_AboutStudent">
+            <End Role="AboutStudent" EntitySet="AboutStudent" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
           <AssociationSet Name="FK_Student_Speciality" Association="Self.FK_Student_Speciality">
             <End Role="Speciality" EntitySet="Speciality" />
             <End Role="Student" EntitySet="Student" />
@@ -374,19 +375,19 @@
       <Schema Namespace="SpecialForWPFSafModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AboutStudent">
           <Key>
-            <PropertyRef Name="ID_stud" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID_stud" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_school" Type="Int32" />
           <Property Name="Average_Mark" Type="Double" />
           <NavigationProperty Name="School" Relationship="Self.FK_AboutStudent_School" FromRole="AboutStudent" ToRole="School" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_AboutStudent_Student" FromRole="AboutStudent" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Student_AboutStudent" FromRole="AboutStudent" ToRole="Student" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Abbreviation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Dep_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ID_fac" Type="Int32" />
@@ -399,7 +400,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Volume" Type="Int32" />
           <Property Name="ID_dep" Type="Int32" />
           <Property Name="DiscEnable" Type="Boolean" />
@@ -411,7 +412,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_dep" Type="Int32" />
           <Property Name="SFP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ID_jt" Type="Int32" />
@@ -429,7 +430,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date_ex" Type="DateTime" Precision="0" />
           <Property Name="ID_dis" Type="Int32" />
           <Property Name="ID_stud" Type="Int32" />
@@ -445,7 +446,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Abbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name_Fac" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Department_Faculty" FromRole="Faculty" ToRole="Department" />
@@ -454,7 +455,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name_jod_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Job_title" FromRole="Job_title" ToRole="Employee" />
         </EntityType>
@@ -462,7 +463,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_dis" Type="Int32" />
           <Property Name="ID_spec" Type="Int32" />
           <NavigationProperty Name="Discipline" Relationship="Self.FK_Request_Discipline" FromRole="Request" ToRole="Discipline" />
@@ -472,7 +473,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SchoolNumber" Type="Int32" />
           <Property Name="ID_scholl_title" Type="Int32" />
           <NavigationProperty Name="AboutStudent" Relationship="Self.FK_AboutStudent_School" FromRole="School" ToRole="AboutStudent" />
@@ -482,7 +483,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="School" Relationship="Self.FK_School_SchoolTitle" FromRole="SchoolTitle" ToRole="School" />
         </EntityType>
@@ -490,7 +491,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name_spec" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ID_dep" Type="Int32" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Speciality_Department" FromRole="Speciality" ToRole="Department" />
@@ -501,11 +502,12 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_spec" Type="Int32" />
           <Property Name="FIO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="StudEnable" Type="Boolean" />
-          <NavigationProperty Name="AboutStudent" Relationship="Self.FK_AboutStudent_Student" FromRole="Student" ToRole="AboutStudent" />
+          <Property Name="ID_info" Type="Int32" />
+          <NavigationProperty Name="AboutStudent" Relationship="Self.FK_Student_AboutStudent" FromRole="Student" ToRole="AboutStudent" />
           <NavigationProperty Name="Exasm" Relationship="Self.FK_Exasm_Student" FromRole="Student" ToRole="Exasm" />
           <NavigationProperty Name="Speciality" Relationship="Self.FK_Student_Speciality" FromRole="Student" ToRole="Speciality" />
         </EntityType>
@@ -531,15 +533,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AboutStudent_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+        <Association Name="FK_Student_AboutStudent">
           <End Role="AboutStudent" Type="Self.AboutStudent" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Student">
+            <Principal Role="AboutStudent">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="AboutStudent">
-              <PropertyRef Name="ID_stud" />
+            <Dependent Role="Student">
+              <PropertyRef Name="ID_info" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -691,7 +693,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SpecialForWPFSafEntities4" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SpecialForWPFSafEntities7" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AboutStudent" EntityType="Self.AboutStudent" />
           <EntitySet Name="Department" EntityType="Self.Department" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" />
@@ -709,9 +711,9 @@
             <End Role="School" EntitySet="School" />
             <End Role="AboutStudent" EntitySet="AboutStudent" />
           </AssociationSet>
-          <AssociationSet Name="FK_AboutStudent_Student" Association="Self.FK_AboutStudent_Student">
-            <End Role="Student" EntitySet="Student" />
+          <AssociationSet Name="FK_Student_AboutStudent" Association="Self.FK_Student_AboutStudent">
             <End Role="AboutStudent" EntitySet="AboutStudent" />
+            <End Role="Student" EntitySet="Student" />
           </AssociationSet>
           <AssociationSet Name="FK_Department_Faculty" Association="Self.FK_Department_Faculty">
             <End Role="Faculty" EntitySet="Faculty" />
@@ -767,11 +769,11 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities4">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities7">
           <EntitySetMapping Name="AboutStudent">
             <EntityTypeMapping TypeName="SpecialForWPFSafModel.AboutStudent">
               <MappingFragment StoreEntitySet="AboutStudent">
-                <ScalarProperty Name="ID_stud" ColumnName="ID_stud" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_school" ColumnName="ID_school" />
                 <ScalarProperty Name="Average_Mark" ColumnName="Average_Mark" />
               </MappingFragment>
@@ -886,6 +888,7 @@
                 <ScalarProperty Name="ID_spec" ColumnName="ID_spec" />
                 <ScalarProperty Name="FIO" ColumnName="FIO" />
                 <ScalarProperty Name="StudEnable" ColumnName="StudEnable" />
+                <ScalarProperty Name="ID_info" ColumnName="ID_info" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

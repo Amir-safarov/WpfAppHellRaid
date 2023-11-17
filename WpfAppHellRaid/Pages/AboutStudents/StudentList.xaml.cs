@@ -81,5 +81,9 @@ namespace WpfAppHellRaid.Pages.AboutStudents
             }
         }
 
+        private void RefreshStud_Click(object sender, RoutedEventArgs e)
+        {
+            ListRefresh();
+        }
     }
 }

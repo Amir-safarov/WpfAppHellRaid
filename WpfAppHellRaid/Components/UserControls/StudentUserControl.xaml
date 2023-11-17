@@ -17,15 +17,15 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" Margin="0,10,10,0">
-                <TextBlock Name="Stud_ID_TB" Margin="5,0,0,0">Номер студента: 10</TextBlock>
-                <TextBlock Name="Stud_ID_spec_TB" Margin="5,30,0,0">Специальность: Программирование</TextBlock>
-                <TextBlock Name="Stud_FIO_TB" Margin="5,30,0,0">Инициалы студента: Сафаров А.Ф.</TextBlock>
+                <TextBlock Name="Stud_ID_TB" Margin="5,0,0,0">Номер студента:</TextBlock>
+                <TextBlock Name="Stud_ID_spec_TB" Margin="5,30,0,0">Специальность: </TextBlock>
+                <TextBlock Name="Stud_FIO_TB" Margin="5,30,0,0">Инициалы студента:</TextBlock>
             </StackPanel>
             <StackPanel Name="ExtrainfoSP" Grid.Row="0" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" Margin="10,10,0,0">
                 <TextBlock FontWeight="Bold" >Дополнительная информация о студенте</TextBlock>
                 <TextBlock >Оконченное учебное заведение:</TextBlock>
-                <TextBlock x:Name="PastStudPlace_TB" Margin="5,0,0,0">Гимнация №52</TextBlock>
-                <TextBlock x:Name="AverageSchoolMark_TB" Margin="5,0,0,0">Балл атестата: 4.87</TextBlock>
+                <TextBlock x:Name="PastStudPlace_TB" Margin="5,0,0,0"></TextBlock>
+                <TextBlock x:Name="AverageSchoolMark_TB" Margin="5,0,0,0">Балл атестата: </TextBlock>
             </StackPanel>
             <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="2">
                 <Button x:Name="Edit_BTN" Height="30" Width="100" Click="Edit_BTN_Click">Редактировать</Button>

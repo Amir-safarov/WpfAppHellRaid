@@ -26,30 +26,22 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock>Номер студента:</TextBlock>
-            <TextBox Width="100" Name="IDStudTB" Text="{Binding ID}"></TextBox>
+            <TextBox Width="100" Name="IDStudTB" Text="{Binding ID}" PreviewTextInput="OnlyDigits_PreviewTextInput"></TextBox>
         </StackPanel>
         <TextBlock Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">Дополнительные сведения о студенете</TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock>Тип учебного заведения:</TextBlock>
-            <ComboBox Width="100" Name="SchoolTitleCB" IsEditable="True" Text="{Binding AboutStudent.School.SchoolTitle.Title_name}">
-                <ComboBoxItem>Школа</ComboBoxItem>
-                <ComboBoxItem>Лицей</ComboBoxItem>
-                <ComboBoxItem>Гиманция</ComboBoxItem>
-            </ComboBox>
+            <ComboBox Width="100" Name="SchoolTitleCB" IsEditable="True" Text="{Binding SchoolTitle.Title_name}"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock Margin="0,0,5,0">Специальность</TextBlock>
-            <ComboBox Width="100" Name="SpecCB" IsEditable="True" Text="{Binding Speciality.Name_spec}">
-                <ComboBoxItem>Прикладная математика</ComboBoxItem>
-                <ComboBoxItem>Информационные системы и технологии</ComboBoxItem>
-                <ComboBoxItem>Прикладная информатика</ComboBoxItem>
-                <ComboBoxItem>Ядерные физика и технологии</ComboBoxItem>
-                <ComboBoxItem>Бизнес-информатика</ComboBoxItem>
+            <ComboBox Width="100" Name="SpecCB" IsEditable="True" Text="{Binding Speciality.Name_spec}" >
+     
             </ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock>Номер учебного заведения:</TextBlock>
-            <TextBox Width="100" Name="IDEmplTB" Text="{Binding AboutStudent.School.SchoolNumber}"></TextBox>
+            <TextBox Width="100" Name="SchoolNumberTB" Text="{Binding AboutStudent.School.SchoolNumber}" PreviewTextInput="OnlyDigits_PreviewTextInput"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock>Инициалы студента:</TextBlock>
@@ -59,6 +51,6 @@
             <TextBlock>Оценка в атестате:</TextBlock>
             <TextBox Width="100" Height="25" Name="MarkTB" Text="{Binding AboutStudent.Average_Mark}"></TextBox>
         </StackPanel>
-        <Button Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="2" Margin="20" Width="200" Click="Button_Click">Добавить</Button>
+        <Button Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="2" Margin="20" Width="200" Click="Button_Click" PreviewTextInput="OnlyDigits_PreviewTextInput">Добавить</Button>
     </Grid>
 </Page>

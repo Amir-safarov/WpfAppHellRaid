@@ -14,11 +14,18 @@ namespace WpfAppHellRaid.Components
     
     public partial class AboutStudent
     {
-        public int ID_stud { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AboutStudent()
+        {
+            this.Student = new HashSet<Student>();
+        }
+    
+        public int ID { get; set; }
         public Nullable<int> ID_school { get; set; }
         public Nullable<double> Average_Mark { get; set; }
     
         public virtual School School { get; set; }
-        public virtual Student Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Student { get; set; }
     }
 }
