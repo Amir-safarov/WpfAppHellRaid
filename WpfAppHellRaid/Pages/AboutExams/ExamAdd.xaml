@@ -29,24 +29,24 @@
             <TextBox Width="100" Name="IDExTB"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <TextBlock>Номер дисциплины:</TextBlock>
-            <TextBox Width="100" Name="IDDisTB"></TextBox>
+            <TextBlock>Дисциплина:</TextBlock>
+            <ComboBox Width="100" Name="DisCB"  Text="{Binding Path= Discipline.DiscName}" IsEditable="True"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <TextBlock>Номер студента:</TextBlock>
-            <TextBox Width="100" Name="IDStudTB"></TextBox>
+            <TextBlock>Cтудент:</TextBlock>
+            <ComboBox Width="100" Name="StudCB" Text="{Binding Path= Student.FIO}" IsEditable="True"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <TextBlock>Номер преподавтеля:</TextBlock>
-            <TextBox Width="100" Name="IDEmplTB"></TextBox>
+            <TextBlock>Преподавтеля:</TextBlock>
+            <ComboBox Width="100" Name="EmplCB" Text="{Binding Path= Employee.FIO}" IsEditable="True"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock>Аудитория:</TextBlock>
-            <TextBox Width="100" Name="AuditTB"></TextBox>
+            <ComboBox Width="100" Name="AuditCB"  Text="{Binding Path= Audit}" IsEditable="True"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock>Оценка</TextBlock>
-            <TextBox Width="100" Name="MarkTB"></TextBox>
+            <TextBox Width="100" Name="MarkTB" Text="{Binding Mark}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock>Дата проведения:</TextBlock>

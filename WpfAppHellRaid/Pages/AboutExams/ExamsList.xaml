@@ -32,8 +32,10 @@
                 <TextBlock>Поиск</TextBlock>
                 <TextBox Name="SearchTB" Width="100" TextChanged="SearchTB_TextChanged"></TextBox>
             </StackPanel>
-             <Button x:Name="AddExam" Margin="20,5,5,0" Click="AddExam_Click">Добавление экзамена</Button>
-            
+             <Button x:Name="AddExam" Margin="20,5,5,0" Click="AddExam_Click">Добавить\редактировать запись</Button>
+            <Button x:Name="DelExam" Margin="20,5,5,0" Click="DelExam_Click">Удалить запись</Button>
+             <Button x:Name="RefreshList" Margin="20,5,5,0">Обновить список</Button>
+
         </StackPanel>
         <Border BorderThickness="3" Grid.Row="1">
             <ListView Name="ExamsListView" >

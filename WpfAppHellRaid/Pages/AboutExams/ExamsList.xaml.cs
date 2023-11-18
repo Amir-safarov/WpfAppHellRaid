@@ -26,7 +26,7 @@ namespace WpfAppHellRaid.Pages
         public ExamsList()
         {
             InitializeComponent();
-   
+
             ListRefresh();
             ExamsListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true).ToList();
 
@@ -59,11 +59,11 @@ namespace WpfAppHellRaid.Pages
             {
                 ExamsListView.ItemsSource = database.OrderByDescending(x => x.Date_ex).ToList();
             }
-            if(NameSortCB.SelectedIndex == 0)
+            if (NameSortCB.SelectedIndex == 0)
             {
                 ExamsListView.ItemsSource = database.OrderBy(x => x.Student.FIO).ToList();
             }
-            if(NameSortCB.SelectedIndex == 1)
+            if (NameSortCB.SelectedIndex == 1)
             {
                 ExamsListView.ItemsSource = database.OrderByDescending(x => x.Student.FIO).ToList();
             }
@@ -77,7 +77,25 @@ namespace WpfAppHellRaid.Pages
 
         private void AddExam_Click(object sender, RoutedEventArgs e)
         {
-            ModernNavigation.NextPage(new PageComponent("Добавить новую запись экзамена", new ExamAdd(new Exasm())));
+            if (ExamsListView.SelectedItem != null)
+                ModernNavigation.NextPage(new PageComponent("Редактировать запись экзамена", new ExamAdd((ExamsListView.SelectedItem as Exasm))));
+            else
+            {
+                ModernNavigation.NextPage(new PageComponent("Добавление запись экзамена", new ExamAdd(new Exasm())));
+                MessageBox.Show("Открыто окно добавления записи.\n Что бы изменить запись вернитесь и выберите запись из списка.");
+            }
+        }
+
+        private void DelExam_Click(object sender, RoutedEventArgs e)
+        {
+            if (ExamsListView.SelectedItem != null)
+            {
+                (ExamsListView.SelectedItem as Exasm).ExamEnable = false;
+                MessageBox.Show($"Запись {(ExamsListView.SelectedItem as Exasm).ID} была удалена");
+            }
+            else
+                MessageBox.Show("Выберите запись");
+
         }
     }
 }
