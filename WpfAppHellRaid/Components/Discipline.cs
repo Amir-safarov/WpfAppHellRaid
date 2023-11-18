@@ -25,6 +25,7 @@ namespace WpfAppHellRaid.Components
         public Nullable<int> Volume { get; set; }
         public Nullable<int> ID_dep { get; set; }
         public Nullable<bool> DiscEnable { get; set; }
+        public string DiscName { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

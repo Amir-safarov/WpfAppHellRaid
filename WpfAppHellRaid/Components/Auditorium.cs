@@ -12,31 +12,17 @@ namespace WpfAppHellRaid.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Auditorium
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee()
+        public Auditorium()
         {
-            this.Employee1 = new HashSet<Employee>();
             this.Exasm = new HashSet<Exasm>();
         }
     
         public int ID { get; set; }
-        public Nullable<int> ID_dep { get; set; }
-        public string SFP { get; set; }
-        public Nullable<int> ID_jt { get; set; }
-        public Nullable<int> Salary { get; set; }
-        public Nullable<int> Chef { get; set; }
-        public Nullable<int> Experience { get; set; }
-        public string Rank { get; set; }
-        public string Extent { get; set; }
-        public Nullable<bool> EmplEnable { get; set; }
+        public string Audit_name { get; set; }
     
-        public virtual Department Department { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employee1 { get; set; }
-        public virtual Employee Employee2 { get; set; }
-        public virtual Job_title Job_title { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Exasm> Exasm { get; set; }
     }

@@ -38,15 +38,15 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock>Преподавтеля:</TextBlock>
-            <ComboBox Width="100" Name="EmplCB" Text="{Binding Path= Employee.FIO}" IsEditable="True"></ComboBox>
+            <ComboBox Width="100" Name="EmplCB" Text="{Binding Path= Employee.SFP}" IsEditable="True"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock>Аудитория:</TextBlock>
-            <ComboBox Width="100" Name="AuditCB"  Text="{Binding Path= Audit}" IsEditable="True"></ComboBox>
+            <ComboBox Width="100" Name="AuditCB"  Text="{Binding Path= Auditorium.Audit_name}" IsEditable="True"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock>Оценка</TextBlock>
-            <TextBox Width="100" Name="MarkTB" Text="{Binding Mark}"></TextBox>
+            <TextBox Width="100" Name="MarkTB" Text="{Binding Mark}"  PreviewTextInput="OnlyDigits_PreviewTextInput" ></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock>Дата проведения:</TextBlock>

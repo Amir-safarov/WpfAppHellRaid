@@ -29,7 +29,8 @@ namespace WpfAppHellRaid.Pages
 
             ListRefresh();
             ExamsListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true).ToList();
-
+            DateSortCB.SelectedIndex = 0;
+            NameSortCB.SelectedIndex = 0;
         }
 
         private void DateSortCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,9 +93,18 @@ namespace WpfAppHellRaid.Pages
             {
                 (ExamsListView.SelectedItem as Exasm).ExamEnable = false;
                 MessageBox.Show($"Запись {(ExamsListView.SelectedItem as Exasm).ID} была удалена");
+                App.DataBase.SaveChanges();
             }
             else
                 MessageBox.Show("Выберите запись");
+
+        }
+
+        private void RefreshList_Click(object sender, RoutedEventArgs e)
+        {
+            ExamsListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true).ToList();
+            DateSortCB.SelectedIndex = 0;
+            NameSortCB.SelectedIndex = 0;
 
         }
     }

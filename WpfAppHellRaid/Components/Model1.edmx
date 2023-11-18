@@ -13,6 +13,13 @@
           <Property Name="ID_school" Type="int" />
           <Property Name="Average_Mark" Type="float" />
         </EntityType>
+        <EntityType Name="Auditorium">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Audit_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="ID" />
@@ -30,6 +37,7 @@
           <Property Name="Volume" Type="int" />
           <Property Name="ID_dep" Type="int" />
           <Property Name="DiscEnable" Type="bit" />
+          <Property Name="DiscName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -55,7 +63,7 @@
           <Property Name="ID_dis" Type="int" />
           <Property Name="ID_stud" Type="int" />
           <Property Name="ID_empl" Type="int" />
-          <Property Name="Audit" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID_audit" Type="int" />
           <Property Name="Mark" Type="int" />
           <Property Name="ExamEnable" Type="bit" />
         </EntityType>
@@ -173,6 +181,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="Chef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_Job_title">
           <End Role="Job_title" Type="Self.Job_title" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -184,6 +204,18 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="ID_jt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exasm_Auditorium">
+          <End Role="Auditorium" Type="Self.Auditorium" Multiplicity="0..1" />
+          <End Role="Exasm" Type="Self.Exasm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auditorium">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Exasm">
+              <PropertyRef Name="ID_audit" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -299,6 +331,7 @@
         </Association>
         <EntityContainer Name="Хранилище SpecialForWPFSafModelContainer">
           <EntitySet Name="AboutStudent" EntityType="Self.AboutStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auditorium" EntityType="Self.Auditorium" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
@@ -327,9 +360,17 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employee_Employee" Association="Self.FK_Employee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Employee1" EntitySet="Employee" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Job_title" Association="Self.FK_Employee_Job_title">
             <End Role="Job_title" EntitySet="Job_title" />
             <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exasm_Auditorium" Association="Self.FK_Exasm_Auditorium">
+            <End Role="Auditorium" EntitySet="Auditorium" />
+            <End Role="Exasm" EntitySet="Exasm" />
           </AssociationSet>
           <AssociationSet Name="FK_Exasm_Discipline" Association="Self.FK_Exasm_Discipline">
             <End Role="Discipline" EntitySet="Discipline" />
@@ -383,6 +424,14 @@
           <NavigationProperty Name="School" Relationship="Self.FK_AboutStudent_School" FromRole="AboutStudent" ToRole="School" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Student_AboutStudent" FromRole="AboutStudent" ToRole="Student" />
         </EntityType>
+        <EntityType Name="Auditorium">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Audit_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Exasm" Relationship="Self.FK_Exasm_Auditorium" FromRole="Auditorium" ToRole="Exasm" />
+        </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="ID" />
@@ -404,6 +453,7 @@
           <Property Name="Volume" Type="Int32" />
           <Property Name="ID_dep" Type="Int32" />
           <Property Name="DiscEnable" Type="Boolean" />
+          <Property Name="DiscName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Discipline_Department" FromRole="Discipline" ToRole="Department" />
           <NavigationProperty Name="Exasm" Relationship="Self.FK_Exasm_Discipline" FromRole="Discipline" ToRole="Exasm" />
           <NavigationProperty Name="Request" Relationship="Self.FK_Request_Discipline" FromRole="Discipline" ToRole="Request" />
@@ -423,6 +473,8 @@
           <Property Name="Extent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmplEnable" Type="Boolean" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
+          <NavigationProperty Name="Employee2" Relationship="Self.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
           <NavigationProperty Name="Job_title" Relationship="Self.FK_Employee_Job_title" FromRole="Employee" ToRole="Job_title" />
           <NavigationProperty Name="Exasm" Relationship="Self.FK_Exasm_Employee" FromRole="Employee" ToRole="Exasm" />
         </EntityType>
@@ -435,9 +487,10 @@
           <Property Name="ID_dis" Type="Int32" />
           <Property Name="ID_stud" Type="Int32" />
           <Property Name="ID_empl" Type="Int32" />
-          <Property Name="Audit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ID_audit" Type="Int32" />
           <Property Name="Mark" Type="Int32" />
           <Property Name="ExamEnable" Type="Boolean" />
+          <NavigationProperty Name="Auditorium" Relationship="Self.FK_Exasm_Auditorium" FromRole="Exasm" ToRole="Auditorium" />
           <NavigationProperty Name="Discipline" Relationship="Self.FK_Exasm_Discipline" FromRole="Exasm" ToRole="Discipline" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Exasm_Employee" FromRole="Exasm" ToRole="Employee" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Exasm_Student" FromRole="Exasm" ToRole="Student" />
@@ -545,6 +598,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Exasm_Auditorium">
+          <End Role="Auditorium" Type="Self.Auditorium" Multiplicity="0..1" />
+          <End Role="Exasm" Type="Self.Exasm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auditorium">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Exasm">
+              <PropertyRef Name="ID_audit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Department_Faculty">
           <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
           <End Role="Department" Type="Self.Department" Multiplicity="*" />
@@ -614,6 +679,18 @@
             </Principal>
             <Dependent Role="Request">
               <PropertyRef Name="ID_dis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="Chef" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -693,8 +770,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SpecialForWPFSafEntities7" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SpecialForWPFSafEntities8" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AboutStudent" EntityType="Self.AboutStudent" />
+          <EntitySet Name="Auditorium" EntityType="Self.Auditorium" />
           <EntitySet Name="Department" EntityType="Self.Department" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" />
           <EntitySet Name="Employee" EntityType="Self.Employee" />
@@ -714,6 +792,10 @@
           <AssociationSet Name="FK_Student_AboutStudent" Association="Self.FK_Student_AboutStudent">
             <End Role="AboutStudent" EntitySet="AboutStudent" />
             <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exasm_Auditorium" Association="Self.FK_Exasm_Auditorium">
+            <End Role="Auditorium" EntitySet="Auditorium" />
+            <End Role="Exasm" EntitySet="Exasm" />
           </AssociationSet>
           <AssociationSet Name="FK_Department_Faculty" Association="Self.FK_Department_Faculty">
             <End Role="Faculty" EntitySet="Faculty" />
@@ -738,6 +820,10 @@
           <AssociationSet Name="FK_Request_Discipline" Association="Self.FK_Request_Discipline">
             <End Role="Discipline" EntitySet="Discipline" />
             <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Employee" Association="Self.FK_Employee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Employee1" EntitySet="Employee" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_Job_title" Association="Self.FK_Employee_Job_title">
             <End Role="Job_title" EntitySet="Job_title" />
@@ -769,13 +855,21 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities7">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities8">
           <EntitySetMapping Name="AboutStudent">
             <EntityTypeMapping TypeName="SpecialForWPFSafModel.AboutStudent">
               <MappingFragment StoreEntitySet="AboutStudent">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_school" ColumnName="ID_school" />
                 <ScalarProperty Name="Average_Mark" ColumnName="Average_Mark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auditorium">
+            <EntityTypeMapping TypeName="SpecialForWPFSafModel.Auditorium">
+              <MappingFragment StoreEntitySet="Auditorium">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Audit_name" ColumnName="Audit_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -796,6 +890,7 @@
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
                 <ScalarProperty Name="ID_dep" ColumnName="ID_dep" />
                 <ScalarProperty Name="DiscEnable" ColumnName="DiscEnable" />
+                <ScalarProperty Name="DiscName" ColumnName="DiscName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -823,7 +918,7 @@
                 <ScalarProperty Name="ID_dis" ColumnName="ID_dis" />
                 <ScalarProperty Name="ID_stud" ColumnName="ID_stud" />
                 <ScalarProperty Name="ID_empl" ColumnName="ID_empl" />
-                <ScalarProperty Name="Audit" ColumnName="Audit" />
+                <ScalarProperty Name="ID_audit" ColumnName="ID_audit" />
                 <ScalarProperty Name="Mark" ColumnName="Mark" />
                 <ScalarProperty Name="ExamEnable" ColumnName="ExamEnable" />
               </MappingFragment>

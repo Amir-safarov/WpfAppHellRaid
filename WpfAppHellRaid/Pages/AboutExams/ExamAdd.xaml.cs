@@ -35,14 +35,14 @@ namespace WpfAppHellRaid.Pages
             StudCB.ItemsSource = App.DataBase.Student.ToList();
             StudCB.DisplayMemberPath = "FIO";
 
-            EmplCB.ItemsSource = App.DataBase.Employee.Where(x => x.EmplEnable ==true && x.ID_jt ==1102 || x.ID_jt == 1101).ToList();
-            EmplCB.DisplayMemberPath = "FIO";
+            EmplCB.ItemsSource = App.DataBase.Employee.Where(x => x.EmplEnable == true && x.ID_jt ==1102 || x.ID_jt == 1101).ToList();
+            EmplCB.DisplayMemberPath = "SFP";
 
             DisCB.ItemsSource = App.DataBase.Discipline.ToList();
             DisCB.DisplayMemberPath = "DiscName";
 
-            AuditCB.ItemsSource = App.DataBase.Exasm.Distinct().ToList();
-            AuditCB.DisplayMemberPath = "AName";
+            AuditCB.ItemsSource = App.DataBase.Auditorium.ToList();
+            AuditCB.DisplayMemberPath = "Audit_name";
         }
 
         public ExamAdd(Student student)
@@ -53,18 +53,23 @@ namespace WpfAppHellRaid.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (StudCB.SelectedItem == null)
-                errorString.Append("Выберите студента.");
+                errorString.AppendLine("Выберите студента.");
             if (AuditCB.SelectedItem == null)
-                errorString.Append("Выберите аудиторию.");
+                errorString.AppendLine("Выберите аудиторию.");
             if (DisCB.SelectedItem == null)
-                errorString.Append("Выберите дисциплину.");
+                errorString.AppendLine("Выберите дисциплину.");
             if (EmplCB.SelectedItem == null)
-                errorString.Append("Выберите преподавателя.");
-            if (DateExPicker == null)
-                errorString.Append("Выберите дату проведения.");
-
+                errorString.AppendLine("Выберите преподавателя.");
+            if (DateExPicker.Text == "")
+                errorString.AppendLine("Выберите дату проведения.");
+            int.TryParse(MarkTB.Text, out int mark);
+            if (!(mark >= 2 && mark <= 5))
+                errorString.AppendLine("Не правильно введена оценка");
             if (errorString.Length != 0)
+            {
                 MessageBox.Show(errorString.ToString());
+                errorString.Clear();
+            }
             else
             {
                 if (_exam.ID != 0)
@@ -79,8 +84,8 @@ namespace WpfAppHellRaid.Pages
                     {
                         ID_dis = (DisCB.SelectedItem as Discipline).ID,
                         ID_empl = (EmplCB.SelectedItem as Employee).ID,
-                        ID_stud= (StudCB.SelectedItem as Student).ID,
-                        Audit = (AuditCB.SelectedItem as Exasm).Audit,
+                        ID_stud = (StudCB.SelectedItem as Student).ID,
+                        ID_audit = (AuditCB.SelectedItem as Auditorium).ID,
                         Mark = int.Parse(MarkTB.Text),
                         Date_ex = DateExPicker.SelectedDate,
                         ExamEnable = true
@@ -94,8 +99,6 @@ namespace WpfAppHellRaid.Pages
         private void OnlyDigits_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             MarkTB.MaxLength = 1;
-            if (int.Parse(MarkTB.Text) < 2 && int.Parse(MarkTB.Text) > 5)
-                errorString.AppendLine("Не правильно введена оценка");
             if (!Char.IsDigit(e.Text, 0))
                 e.Handled = true;
         }

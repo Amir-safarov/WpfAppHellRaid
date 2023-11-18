@@ -19,10 +19,11 @@ namespace WpfAppHellRaid.Components
         public Nullable<int> ID_dis { get; set; }
         public Nullable<int> ID_stud { get; set; }
         public Nullable<int> ID_empl { get; set; }
-        public string Audit { get; set; }
+        public Nullable<int> ID_audit { get; set; }
         public Nullable<int> Mark { get; set; }
         public Nullable<bool> ExamEnable { get; set; }
     
+        public virtual Auditorium Auditorium { get; set; }
         public virtual Discipline Discipline { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Student Student { get; set; }
