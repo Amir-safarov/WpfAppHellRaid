@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfAppHellRaid.Components;
+using WpfAppHellRaid.Pages.AboutEmployee;
 using WpfAppHellRaid.Pages.AboutStudents;
 
 namespace WpfAppHellRaid.Pages
@@ -38,7 +39,7 @@ namespace WpfAppHellRaid.Pages
 
         private void EmployeeBTN_Click(object sender, RoutedEventArgs e)
         {
-
+            ModernNavigation.NextPage(new PageComponent("Список преподавателей", new EmployeeList()));
         }
 
         private void DisciplinesBTN_Click(object sender, RoutedEventArgs e)

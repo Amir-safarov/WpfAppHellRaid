@@ -102,5 +102,7 @@ namespace WpfAppHellRaid.Pages
             if (!Char.IsDigit(e.Text, 0))
                 e.Handled = true;
         }
+
+       
     }
 }

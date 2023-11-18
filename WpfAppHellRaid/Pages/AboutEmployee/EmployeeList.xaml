@@ -1,0 +1,57 @@
+﻿<Page x:Class="WpfAppHellRaid.Pages.AboutEmployee.EmployeeList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppHellRaid.Pages.AboutEmployee"
+      mc:Ignorable="d" 
+      d:DesignHeight="250" d:DesignWidth="900"
+      Title="EmployeeList">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="203*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock>Сортировка должностей</TextBlock>
+                <ComboBox Name="TitleSortCB" SelectionChanged="TitleSortCB_SelectionChanged" >
+                    <ComboBoxItem>В алфавитном порядке</ComboBoxItem>
+                    <ComboBoxItem>В обратном порядке</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20,0,0,0">
+                <TextBlock>Сортировка имен</TextBlock>
+                <ComboBox Name="NameSortCB" SelectionChanged="NameSortCB_SelectionChanged" IsEditable="True" >
+                    <ComboBoxItem>В алфавитном порядке</ComboBoxItem>
+                    <ComboBoxItem>В обратном порядке</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20,0,0,0">
+                <TextBlock>Поиск</TextBlock>
+                <TextBox Name="SearchTB" Width="100" TextChanged="SearchTB_TextChanged"  ></TextBox>
+            </StackPanel>
+            <Button x:Name="AddEmpl" Margin="20,5,5,0" Click="AddEmpl_Click" >Добавить\редактировать запись</Button>
+            <Button x:Name="DelEmpl" Margin="20,5,5,0" Click="DelEmpl_Click" >Удалить запись</Button>
+            <Button x:Name="RefreshList" Margin="20,5,5,0" Click="RefreshList_Click">Обновить список</Button>
+
+        </StackPanel>
+        <Border BorderThickness="3" Grid.Row="1">
+            <ListView Name="EmployeeListView" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="75" DisplayMemberBinding="{Binding  Path = ID}">№</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Department.Dep_Name}">Кафедра</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding ="{Binding SFP}">Инициалы</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Job_title.Name_jod_title}">Должность</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Experience}">Стаж</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Rank}">Звание</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Extent}">Степень</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Chef}">Начальник</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+    </Grid>
+</Page>
