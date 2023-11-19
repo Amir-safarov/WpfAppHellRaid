@@ -43,11 +43,15 @@
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock>Степень:</TextBlock>
-            <ComboBox Width="100" Name="ExtentTB" Text="{Binding Path= Extent.Extent_name}" IsEditable="True"></ComboBox>
+            <ComboBox Width="100" Name="ExtentCB" Text="{Binding Path= Extent.Extent_name}" IsEditable="True"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock>Начальник:</TextBlock>
-            <ComboBox Width="100" Name="ChefCB" Text="{Binding Path= SFP}" IsEditable="True"></ComboBox>
+            <ComboBox Width="100" Name="ChefCB" Text="{Binding Path= Chef}" IsEditable="True" ></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <TextBlock>Кафедра:</TextBlock>
+            <ComboBox Width="100" Name="DepCB" Text="{Binding Path= Department.Dep_Name}" IsEditable="True" ></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock>Должность:</TextBlock>

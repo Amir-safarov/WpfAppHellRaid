@@ -1,0 +1,40 @@
+﻿<Page x:Class="WpfAppHellRaid.Pages.AboutDiscipline.DisciplaneEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppHellRaid.Pages.AboutDiscipline"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DisciplaneEdit">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock>Кафедра:</TextBlock>
+            <ComboBox Width="100" Name="DepCB"  Text="{Binding Path= Department.Dep_Name}" IsEditable="True"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <TextBlock>Дисциплина:</TextBlock>
+            <TextBox Width="100" Name="DiscNameTB" Text="{Binding Path= DiscName}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <TextBlock>Объем:</TextBlock>
+            <TextBox Width="100" Name="VolTB" Text="{Binding Volume}"  PreviewTextInput="OnlyDigits_PreviewTextInput" ></TextBox>
+        </StackPanel>
+        <Button Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" Margin="20" Width="200" Click="Button_Click">Добавить</Button>
+    </Grid>
+</Page>

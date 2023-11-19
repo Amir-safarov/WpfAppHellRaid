@@ -30,17 +30,20 @@ namespace WpfAppHellRaid.Pages.AboutEmployee
             _employee = employee;
             this.DataContext = employee;
 
-            JobTitleCB.ItemsSource = App.DataBase.Employee.ToList();
+            JobTitleCB.ItemsSource = App.DataBase.Job_title.ToList();
             JobTitleCB.DisplayMemberPath = "Name_jod_title";
 
             RankCB.ItemsSource = App.DataBase.Rank.ToList();
             RankCB.DisplayMemberPath = "Rank_name";
 
-            ChefCB.ItemsSource = App.DataBase.Employee.Where(x => x.ID_jt == 1102).ToList();
+            ChefCB.ItemsSource = App.DataBase.Employee.Where(x => x.ID_jt == 1101).ToList();
             ChefCB.DisplayMemberPath = "SFP";
 
-            ExtentTB.ItemsSource = App.DataBase.Extent.ToList();
-            ExtentTB.DisplayMemberPath = "Extent_name";
+            ExtentCB.ItemsSource = App.DataBase.Extent.ToList();
+            ExtentCB.DisplayMemberPath = "Extent_name";
+
+            DepCB.ItemsSource = App.DataBase.Department.ToList();
+            DepCB.DisplayMemberPath = "Dep_Name";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,6 +58,43 @@ namespace WpfAppHellRaid.Pages.AboutEmployee
                 errorString.AppendLine("Введите инициалы сотрудника.");
             if (JobTitleCB.SelectedItem == null)
                 errorString.AppendLine("Выберите должность сотрудника.");
+            if (DepCB.SelectedItem == null)
+                errorString.AppendLine("Выберите кафедру сотрудника.");
+            if(ChefCB.SelectedItem == null)
+                errorString.AppendLine("Выберите начальника сотруднику.");
+
+            if (errorString.Length >0)
+            {
+                MessageBox.Show(errorString.ToString());
+                errorString.Clear();
+            }
+            else
+            {
+                if (_employee.ID != 0)
+                {
+                    App.DataBase.SaveChanges();
+                    ModernNavigation.NextPage(new PageComponent("Список сотрудников", new EmployeeList()));
+                    MessageBox.Show("Данные изменены");
+                }
+                else
+                {
+                    App.DataBase.Employee.Add(new Employee()
+                    {
+                        ID_jt = (JobTitleCB.SelectedItem as Job_title).ID,
+                        ID_extent = (ExtentCB.SelectedItem as Extent).ID,
+                        ID_rank = (RankCB.SelectedItem as Rank).ID,
+                        SFP = SFPTB.Text,
+                        Salary = salary,
+                        EmplEnable = true,
+                        Experience = experience,
+                        Chef = (ChefCB.SelectedItem as Employee).Chef,
+                        ID_dep = (DepCB.SelectedItem as Department).ID
+                    });
+                    App.DataBase.SaveChanges();
+                    ModernNavigation.NextPage(new PageComponent("Список дисциплин", new EmployeeList()));
+                    MessageBox.Show("Данные сохранены");
+                }
+            }
 
         }
         private void OnlyDigits_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -64,5 +104,7 @@ namespace WpfAppHellRaid.Pages.AboutEmployee
             if (!Char.IsDigit(e.Text, 0))
                 e.Handled = true;
         }
+
+        
     }
 }

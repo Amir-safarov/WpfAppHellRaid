@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using WpfAppHellRaid.Pages;
 
 namespace WpfAppHellRaid.Components
 {
@@ -37,6 +38,13 @@ namespace WpfAppHellRaid.Components
         {
             //App.isAdmin = false;
             storylist.Clear();
+        }
+        public static void BackAuth()
+        {
+            App.isAdmin = false;
+            App.isEmployee = false;
+            ClearStoryList();
+            NextPage(new PageComponent("Меню", new Authorization()));
         }
     }
     internal class PageComponent

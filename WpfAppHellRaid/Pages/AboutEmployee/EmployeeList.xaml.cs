@@ -104,6 +104,7 @@ namespace WpfAppHellRaid.Pages.AboutEmployee
         private void RefreshList_Click(object sender, RoutedEventArgs e)
         {
             EmployeeListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true).ToList();
+            NameSortCB.SelectedIndex = 1;
         }
 
     }

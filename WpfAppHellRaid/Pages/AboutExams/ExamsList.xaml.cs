@@ -31,10 +31,10 @@ namespace WpfAppHellRaid.Pages
                 DelExam.Visibility = Visibility.Collapsed;
                 AddExam.Visibility = Visibility.Collapsed;
             }
-            ListRefresh();
             ExamsListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true).ToList();
             DateSortCB.SelectedIndex = 0;
             NameSortCB.SelectedIndex = 0;
+            ListRefresh();
         }
 
         private void DateSortCB_SelectionChanged(object sender, SelectionChangedEventArgs e)

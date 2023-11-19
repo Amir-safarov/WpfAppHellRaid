@@ -31,21 +31,27 @@ namespace WpfAppHellRaid.Pages
         {
             var emp = App.DataBase.Employee.Where(x => x.ID.ToString() == InputTB.Text).FirstOrDefault();
             var stud = App.DataBase.Student.Where(x => x.ID.ToString() == InputTB.Text).FirstOrDefault();
-            if (emp!=null || stud !=null)
+            if (emp!=null || stud !=null || InputTB.Text =="admin")
             {
                 if(emp != null)
                 {
                     App.isEmployee = true;
-                    App.userNumber = emp.ID;
                     MessageBox.Show($"Найдет сотрудник {emp.ID}. Инициалы: {emp.SFP}.");
                     ModernNavigation.NextPage(new PageComponent("Меню", new ListsMenu()));
                 }
                 if(stud != null)
                 {
                     App.isEmployee = false;
-                    App.userNumber = stud.ID;
-                    MessageBox.Show($"Найдет студент {stud.ID}. Инициалы: {stud.FIO}.");
+                    MessageBox.Show($"Студент {stud.ID}. Инициалы: {stud.FIO}.\nСпециальность: {stud.Speciality.Name_spec}");
                     ModernNavigation.NextPage(new PageComponent("Меню", new ListsMenu()));
+                }
+                if(InputTB.Text == "admin")
+                {
+                    App.isEmployee = true;
+                    App.isAdmin = true;
+                    MessageBox.Show($"Админимстратор");
+                    ModernNavigation.NextPage(new PageComponent("Меню", new ListsMenu()));
+
                 }
             }
             else

@@ -26,6 +26,7 @@ namespace WpfAppHellRaid
         public MainWindow()
         {
             InitializeComponent();
+            MessageBox.Show("Примеры пользователей:\nСтудент: 10101\nПреподаватель: 101\nАдмин:admin");
             ModernNavigation.mainWindow = this;
             ModernNavigation.NextPage(new PageComponent("Авторизация",new Authorization()));
         }
@@ -33,6 +34,11 @@ namespace WpfAppHellRaid
         private void BackBTN_Click(object sender, RoutedEventArgs e)
         {
             ModernNavigation.BackPage();
+        }
+
+        private void MenuBTN_Click(object sender, RoutedEventArgs e)
+        {
+            ModernNavigation.BackAuth();
         }
     }
 }
