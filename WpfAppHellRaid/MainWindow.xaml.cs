@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +41,11 @@ namespace WpfAppHellRaid
         private void MenuBTN_Click(object sender, RoutedEventArgs e)
         {
             ModernNavigation.BackAuth();
+        }
+
+        private void QRBTN_Click(object sender, RoutedEventArgs e)
+        {
+            ModernNavigation.NextPage(new PageComponent("О нас", new QR()));
         }
     }
 }
