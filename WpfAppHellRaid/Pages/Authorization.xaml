@@ -12,6 +12,7 @@
             <TextBlock>Введите свой номер</TextBlock>
             <TextBox x:Name="InputTB" ></TextBox>
             <Button x:Name="EnterBTN" Margin="0,3,0,0" Click="EnterBTN_Click">Войти</Button>
+            <Button x:Name="GuestBTN" Margin="0,3,0,0" Click="GuestBTN_Click">Гостевой режим</Button>
         </StackPanel>
     </Grid>
 </Page>

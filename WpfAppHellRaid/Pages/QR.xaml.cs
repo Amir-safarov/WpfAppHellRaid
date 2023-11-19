@@ -31,7 +31,7 @@ namespace WpfAppHellRaid.Pages
         {
             
             // Ссылка на XL таблицу
-            string soucer_xl = "https://youtu.be/dQw4w9WgXcQ?si=JtjgdkfqRYA69l81";
+            string soucer_xl = "https://youtu.be/LeT-c_AY68I?si=-88x5BUArxmGxoHf";
             // Создание переменной библиотеки QRCoder
             QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
             // Присваеваем значиения

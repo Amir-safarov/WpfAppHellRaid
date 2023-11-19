@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfAppHellRaid.Components;
+using WpfAppHellRaid.Pages.AboutDiscipline;
 
 namespace WpfAppHellRaid.Pages
 {
@@ -36,14 +37,13 @@ namespace WpfAppHellRaid.Pages
                 if(emp != null)
                 {
                     App.isEmployee = true;
-                    App.userNumber = emp.ID;
-                    MessageBox.Show($"Найдет сотрудник {App.userNumber}. Инициалы: {emp.SFP}.");
+                    MessageBox.Show($"Найдет сотрудник {emp.ID}. Инициалы: {emp.SFP}.");
                     ModernNavigation.NextPage(new PageComponent("Меню", new ListsMenu()));
                 }
                 if(stud != null)
                 {
                     App.isEmployee = false;
-                    MessageBox.Show($"Студент {App.userNumber}. Инициалы: {stud.FIO}.\nСпециальность: {stud.Speciality.Name_spec}");
+                    MessageBox.Show($"Студент {stud.ID}. Инициалы: {stud.FIO}.\nСпециальность: {stud.Speciality.Name_spec}");
                     ModernNavigation.NextPage(new PageComponent("Меню", new ListsMenu()));
                 }
                 if(InputTB.Text == "admin")
@@ -57,6 +57,11 @@ namespace WpfAppHellRaid.Pages
             }
             else
                 MessageBox.Show("Нет пользователся с таким номером");
+        }
+
+        private void GuestBTN_Click(object sender, RoutedEventArgs e)
+        {
+            ModernNavigation.NextPage(new PageComponent("Гостевой просмотр дисциплин", new DisciplineList()));
         }
     }
 }

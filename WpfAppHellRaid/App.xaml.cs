@@ -17,6 +17,5 @@ namespace WpfAppHellRaid
         public static SpecialForWPFSafEntities10 DataBase = new SpecialForWPFSafEntities10();
         public static bool isEmployee = false;
         public static bool isAdmin = false;
-        public static int userNumber;
     }
 }
