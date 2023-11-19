@@ -19,7 +19,7 @@
         <Rectangle Grid.RowSpan="2" Fill="#8FAABB"></Rectangle>
 
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" Margin="0,100,0,0">
-            <Button x:Name="BackBTN" Click="BackBTN_Click">Back</Button>
+            <Button x:Name="BackBTN" Click="BackBTN_Click" >Back</Button>
             <Button x:Name="MenuBTN" Click="MenuBTN_Click">Crash</Button>
             <Button x:Name="QRBTN" Click="QRBTN_Click" >QR</Button>
         </StackPanel>
