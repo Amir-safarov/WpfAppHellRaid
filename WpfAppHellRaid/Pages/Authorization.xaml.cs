@@ -36,13 +36,14 @@ namespace WpfAppHellRaid.Pages
                 if(emp != null)
                 {
                     App.isEmployee = true;
-                    MessageBox.Show($"Найдет сотрудник {emp.ID}. Инициалы: {emp.SFP}.");
+                    App.userNumber = emp.ID;
+                    MessageBox.Show($"Найдет сотрудник {App.userNumber}. Инициалы: {emp.SFP}.");
                     ModernNavigation.NextPage(new PageComponent("Меню", new ListsMenu()));
                 }
                 if(stud != null)
                 {
                     App.isEmployee = false;
-                    MessageBox.Show($"Студент {stud.ID}. Инициалы: {stud.FIO}.\nСпециальность: {stud.Speciality.Name_spec}");
+                    MessageBox.Show($"Студент {App.userNumber}. Инициалы: {stud.FIO}.\nСпециальность: {stud.Speciality.Name_spec}");
                     ModernNavigation.NextPage(new PageComponent("Меню", new ListsMenu()));
                 }
                 if(InputTB.Text == "admin")

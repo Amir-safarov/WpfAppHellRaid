@@ -15,8 +15,8 @@
             <RowDefinition Height="11*"/>
             <RowDefinition Height="107*"/>
         </Grid.RowDefinitions>
-        <Rectangle Grid.ColumnSpan="2" Fill="#8FAABB"></Rectangle>
-        <Rectangle Grid.RowSpan="2" Fill="#8FAABB"></Rectangle>
+        <Rectangle Grid.ColumnSpan="2" Fill="#153f65"></Rectangle>
+        <Rectangle Grid.RowSpan="2" Fill="#153f65"></Rectangle>
 
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" Margin="0,100,0,0">
             <Button x:Name="BackBTN" Click="BackBTN_Click" >Back</Button>
@@ -24,7 +24,7 @@
             <Button x:Name="QRBTN" Click="QRBTN_Click" >QR</Button>
         </StackPanel>
 
-        <TextBlock x:Name="TitleTb" Grid.Column="1">Вход</TextBlock>
+        <TextBlock x:Name="TitleTb" Grid.Column="1" >Вход</TextBlock>
 
         <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Margin="0,14,0,0" Grid.Row="1"/>
         <Image x:Name="imageQr" Height="500" Width="500" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>

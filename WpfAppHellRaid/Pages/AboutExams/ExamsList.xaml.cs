@@ -31,7 +31,8 @@ namespace WpfAppHellRaid.Pages
                 DelExam.Visibility = Visibility.Collapsed;
                 AddExam.Visibility = Visibility.Collapsed;
             }
-            ExamsListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true).ToList();
+            
+            ExamsListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true && x.ID_stud == App.userNumber|| x.ID_empl == App.userNumber).ToList();
             DateSortCB.SelectedIndex = 0;
             NameSortCB.SelectedIndex = 0;
             ListRefresh();
@@ -53,7 +54,7 @@ namespace WpfAppHellRaid.Pages
         }
         private void ListRefresh()
         {
-            var database = App.DataBase.Exasm.Where(x => x.ExamEnable == true);
+            var database = App.DataBase.Exasm.Where(x => x.ExamEnable == true && x.ID_stud == App.userNumber || x.ID_empl == App.userNumber);
             ICollectionView view = CollectionViewSource.GetDefaultView(database.ToList());
 
             if (DateSortCB.SelectedIndex == 0)
@@ -106,7 +107,7 @@ namespace WpfAppHellRaid.Pages
 
         private void RefreshList_Click(object sender, RoutedEventArgs e)
         {
-            ExamsListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true).ToList();
+            ExamsListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true && x.ID_stud == App.userNumber || x.ID_empl == App.userNumber).ToList();
             DateSortCB.SelectedIndex = 0;
             NameSortCB.SelectedIndex = 0;
 
