@@ -35,7 +35,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock>Звание:</TextBlock>
-            <ComboBox Width="100" Name="RankCB" Text="{Binding Path= Rank}" IsEditable="True"></ComboBox>
+            <ComboBox Width="100" Name="RankCB" Text="{Binding Path= Rank.Rank_name}" IsEditable="True"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock>Заработная плата:</TextBlock>
@@ -43,11 +43,11 @@
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock>Степень:</TextBlock>
-            <ComboBox Width="100" Name="ExtentTB" Text="{Binding Path=Extent}" IsEditable="True"></ComboBox>
+            <ComboBox Width="100" Name="ExtentTB" Text="{Binding Path= Extent.Extent_name}" IsEditable="True"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock>Начальник:</TextBlock>
-            <ComboBox Width="100" Name="ChefCB" Text="{Binding Path= Employee1.SFP}" IsEditable="True"></ComboBox>
+            <ComboBox Width="100" Name="ChefCB" Text="{Binding Path= SFP}" IsEditable="True"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock>Должность:</TextBlock>

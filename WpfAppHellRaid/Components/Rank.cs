@@ -12,30 +12,18 @@ namespace WpfAppHellRaid.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Rank
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee()
+        public Rank()
         {
-            this.Exasm = new HashSet<Exasm>();
+            this.Employee = new HashSet<Employee>();
         }
     
         public int ID { get; set; }
-        public Nullable<int> ID_dep { get; set; }
-        public string SFP { get; set; }
-        public Nullable<int> ID_jt { get; set; }
-        public Nullable<int> Salary { get; set; }
-        public Nullable<int> Chef { get; set; }
-        public Nullable<int> Experience { get; set; }
-        public Nullable<int> ID_rank { get; set; }
-        public Nullable<int> ID_extent { get; set; }
-        public Nullable<bool> EmplEnable { get; set; }
+        public string Rank_name { get; set; }
     
-        public virtual Department Department { get; set; }
-        public virtual Extent Extent { get; set; }
-        public virtual Job_title Job_title { get; set; }
-        public virtual Rank Rank { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Exasm> Exasm { get; set; }
+        public virtual ICollection<Employee> Employee { get; set; }
     }
 }

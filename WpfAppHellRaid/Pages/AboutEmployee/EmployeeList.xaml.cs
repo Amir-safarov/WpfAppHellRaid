@@ -31,20 +31,23 @@ namespace WpfAppHellRaid.Pages.AboutEmployee
         {
             var database = App.DataBase.Employee.Where(x => x.EmplEnable == true);
             ICollectionView view = CollectionViewSource.GetDefaultView(database.ToList());
-
             if (TitleSortCB.SelectedIndex == 0)
+                return;
+            if (TitleSortCB.SelectedIndex == 1)
             {
                 EmployeeListView.ItemsSource = database.OrderBy(x => x.Job_title.Name_jod_title).ToList();
             }
-            if (TitleSortCB.SelectedIndex == 1)
+            if (TitleSortCB.SelectedIndex == 2)
             {
                 EmployeeListView.ItemsSource = database.OrderByDescending(x => x.Job_title.Name_jod_title).ToList();
             }
             if (NameSortCB.SelectedIndex == 0)
+                return;
+            if (NameSortCB.SelectedIndex == 1)
             {
                 EmployeeListView.ItemsSource = database.OrderBy(x => x.SFP).ToList();
             }
-            if (NameSortCB.SelectedIndex == 1)
+            if (NameSortCB.SelectedIndex == 2)
             {
                 EmployeeListView.ItemsSource = database.OrderByDescending(x => x.SFP).ToList();
             }
@@ -96,8 +99,6 @@ namespace WpfAppHellRaid.Pages.AboutEmployee
         private void RefreshList_Click(object sender, RoutedEventArgs e)
         {
             EmployeeListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true).ToList();
-            TitleSortCB.SelectedIndex = 0;
-            NameSortCB.SelectedIndex = 0;
         }
 
     }

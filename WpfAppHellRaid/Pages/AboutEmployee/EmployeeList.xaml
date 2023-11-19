@@ -17,6 +17,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <TextBlock>Сортировка должностей</TextBlock>
                 <ComboBox Name="TitleSortCB" SelectionChanged="TitleSortCB_SelectionChanged" >
+                    <ComboBoxItem>По умолчанию</ComboBoxItem>
                     <ComboBoxItem>В алфавитном порядке</ComboBoxItem>
                     <ComboBoxItem>В обратном порядке</ComboBoxItem>
                 </ComboBox>
@@ -24,6 +25,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20,0,0,0">
                 <TextBlock>Сортировка имен</TextBlock>
                 <ComboBox Name="NameSortCB" SelectionChanged="NameSortCB_SelectionChanged" IsEditable="True" >
+                    <ComboBoxItem>По умолчанию</ComboBoxItem>
                     <ComboBoxItem>В алфавитном порядке</ComboBoxItem>
                     <ComboBoxItem>В обратном порядке</ComboBoxItem>
                 </ComboBox>
@@ -45,10 +47,10 @@
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Department.Dep_Name}">Кафедра</GridViewColumn>
                         <GridViewColumn Width="150" DisplayMemberBinding ="{Binding SFP}">Инициалы</GridViewColumn>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Job_title.Name_jod_title}">Должность</GridViewColumn>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Experience}">Стаж</GridViewColumn>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Rank}">Звание</GridViewColumn>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Extent}">Степень</GridViewColumn>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path =Chef}">Начальник</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Experience}">Стаж</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Rank.Rank_name}">Звание</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Extent.Extent_name}">Степень</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Chef}">Начальник</GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

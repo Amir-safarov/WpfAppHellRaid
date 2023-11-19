@@ -4,21 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2443a4a5598d4dff99321433a8bf10c8" Name="Diagram1">
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.AboutStudent" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.Auditorium" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.Department" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.Discipline" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.Employee" Width="1.5" PointX="10.25" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.Exasm" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.Faculty" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.Job_title" Width="1.5" PointX="8" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.Request" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.School" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.SchoolTitle" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.Speciality" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.Student" Width="1.5" PointX="7.5" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialForWPFSafModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="364cf386d86a479b8ff8c76dc45fb899" Name="Diagram1">
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.AboutStudent" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Auditorium" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Department" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Discipline" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Employee" Width="1.5" PointX="10.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Exasm" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Extent" Width="1.5" PointX="8" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Faculty" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Job_title" Width="1.5" PointX="8" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Rank" Width="1.5" PointX="8" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Request" Width="1.5" PointX="7.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.School" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.SchoolTitle" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Speciality" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.Student" Width="1.5" PointX="7.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialForWPFSafModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <AssociationConnector Association="SpecialForWPFSafModel.FK_AboutStudent_School" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialForWPFSafModel.FK_Student_AboutStudent" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialForWPFSafModel.FK_Exasm_Auditorium" ManuallyRouted="false" />
@@ -28,8 +30,9 @@
         <AssociationConnector Association="SpecialForWPFSafModel.FK_Speciality_Department" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialForWPFSafModel.FK_Exasm_Discipline" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialForWPFSafModel.FK_Request_Discipline" ManuallyRouted="false" />
-        <AssociationConnector Association="SpecialForWPFSafModel.FK_Employee_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="SpecialForWPFSafModel.FK_Employee_Extent" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialForWPFSafModel.FK_Employee_Job_title" ManuallyRouted="false" />
+        <AssociationConnector Association="SpecialForWPFSafModel.FK_Employee_Rank" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialForWPFSafModel.FK_Exasm_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialForWPFSafModel.FK_Exasm_Student" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialForWPFSafModel.FK_Request_Speciality" ManuallyRouted="false" />

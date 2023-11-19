@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище SpecialForWPFSafModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище SpecialForWPFSafModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AboutStudent">
           <Key>
             <PropertyRef Name="ID" />
@@ -50,8 +50,8 @@
           <Property Name="Salary" Type="int" />
           <Property Name="Chef" Type="int" />
           <Property Name="Experience" Type="int" />
-          <Property Name="Rank" Type="nvarchar" MaxLength="50" />
-          <Property Name="Extent" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_rank" Type="int" />
+          <Property Name="ID_extent" Type="int" />
           <Property Name="EmplEnable" Type="bit" />
         </EntityType>
         <EntityType Name="Exasm">
@@ -67,6 +67,13 @@
           <Property Name="Mark" Type="int" />
           <Property Name="ExamEnable" Type="bit" />
         </EntityType>
+        <EntityType Name="Extent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Extent_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="ID" />
@@ -81,6 +88,13 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name_jod_title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Rank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Rank_name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -181,15 +195,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Employee_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
+        <Association Name="FK_Employee_Extent">
+          <End Role="Extent" Type="Self.Extent" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Employee">
+            <Principal Role="Extent">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Employee1">
-              <PropertyRef Name="Chef" />
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_extent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -204,6 +218,18 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="ID_jt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Rank">
+          <End Role="Rank" Type="Self.Rank" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_rank" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -336,8 +362,10 @@
           <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exasm" EntityType="Self.Exasm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Extent" EntityType="Self.Extent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job_title" EntityType="Self.Job_title" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rank" EntityType="Self.Rank" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SchoolTitle" EntityType="Self.SchoolTitle" Schema="dbo" store:Type="Tables" />
@@ -360,12 +388,16 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employee_Employee" Association="Self.FK_Employee_Employee">
+          <AssociationSet Name="FK_Employee_Extent" Association="Self.FK_Employee_Extent">
+            <End Role="Extent" EntitySet="Extent" />
             <End Role="Employee" EntitySet="Employee" />
-            <End Role="Employee1" EntitySet="Employee" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_Job_title" Association="Self.FK_Employee_Job_title">
             <End Role="Job_title" EntitySet="Job_title" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Rank" Association="Self.FK_Employee_Rank">
+            <End Role="Rank" EntitySet="Rank" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
           <AssociationSet Name="FK_Exasm_Auditorium" Association="Self.FK_Exasm_Auditorium">
@@ -409,8 +441,7 @@
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SpecialForWPFSafModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -469,13 +500,13 @@
           <Property Name="Salary" Type="Int32" />
           <Property Name="Chef" Type="Int32" />
           <Property Name="Experience" Type="Int32" />
-          <Property Name="Rank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Extent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_rank" Type="Int32" />
+          <Property Name="ID_extent" Type="Int32" />
           <Property Name="EmplEnable" Type="Boolean" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
-          <NavigationProperty Name="Employee1" Relationship="Self.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
-          <NavigationProperty Name="Employee2" Relationship="Self.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
+          <NavigationProperty Name="Extent" Relationship="Self.FK_Employee_Extent" FromRole="Employee" ToRole="Extent" />
           <NavigationProperty Name="Job_title" Relationship="Self.FK_Employee_Job_title" FromRole="Employee" ToRole="Job_title" />
+          <NavigationProperty Name="Rank" Relationship="Self.FK_Employee_Rank" FromRole="Employee" ToRole="Rank" />
           <NavigationProperty Name="Exasm" Relationship="Self.FK_Exasm_Employee" FromRole="Employee" ToRole="Exasm" />
         </EntityType>
         <EntityType Name="Exasm">
@@ -495,6 +526,14 @@
           <NavigationProperty Name="Employee" Relationship="Self.FK_Exasm_Employee" FromRole="Exasm" ToRole="Employee" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Exasm_Student" FromRole="Exasm" ToRole="Student" />
         </EntityType>
+        <EntityType Name="Extent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Extent_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Extent" FromRole="Extent" ToRole="Employee" />
+        </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="ID" />
@@ -511,6 +550,14 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name_jod_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Job_title" FromRole="Job_title" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Rank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Rank_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Rank" FromRole="Rank" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -682,15 +729,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Employee_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
+        <Association Name="FK_Employee_Extent">
+          <End Role="Extent" Type="Self.Extent" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Employee">
+            <Principal Role="Extent">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Employee1">
-              <PropertyRef Name="Chef" />
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_extent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -705,6 +752,18 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="ID_jt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Rank">
+          <End Role="Rank" Type="Self.Rank" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_rank" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -770,15 +829,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SpecialForWPFSafEntities8" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SpecialForWPFSafEntities10" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AboutStudent" EntityType="Self.AboutStudent" />
           <EntitySet Name="Auditorium" EntityType="Self.Auditorium" />
           <EntitySet Name="Department" EntityType="Self.Department" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" />
           <EntitySet Name="Employee" EntityType="Self.Employee" />
           <EntitySet Name="Exasm" EntityType="Self.Exasm" />
+          <EntitySet Name="Extent" EntityType="Self.Extent" />
           <EntitySet Name="Faculty" EntityType="Self.Faculty" />
           <EntitySet Name="Job_title" EntityType="Self.Job_title" />
+          <EntitySet Name="Rank" EntityType="Self.Rank" />
           <EntitySet Name="Request" EntityType="Self.Request" />
           <EntitySet Name="School" EntityType="Self.School" />
           <EntitySet Name="SchoolTitle" EntityType="Self.SchoolTitle" />
@@ -821,12 +882,16 @@
             <End Role="Discipline" EntitySet="Discipline" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employee_Employee" Association="Self.FK_Employee_Employee">
+          <AssociationSet Name="FK_Employee_Extent" Association="Self.FK_Employee_Extent">
+            <End Role="Extent" EntitySet="Extent" />
             <End Role="Employee" EntitySet="Employee" />
-            <End Role="Employee1" EntitySet="Employee" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_Job_title" Association="Self.FK_Employee_Job_title">
             <End Role="Job_title" EntitySet="Job_title" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Rank" Association="Self.FK_Employee_Rank">
+            <End Role="Rank" EntitySet="Rank" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
           <AssociationSet Name="FK_Exasm_Employee" Association="Self.FK_Exasm_Employee">
@@ -855,7 +920,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities8">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SpecialForWPFSafModelContainer" CdmEntityContainer="SpecialForWPFSafEntities10">
           <EntitySetMapping Name="AboutStudent">
             <EntityTypeMapping TypeName="SpecialForWPFSafModel.AboutStudent">
               <MappingFragment StoreEntitySet="AboutStudent">
@@ -904,8 +969,8 @@
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Chef" ColumnName="Chef" />
                 <ScalarProperty Name="Experience" ColumnName="Experience" />
-                <ScalarProperty Name="Rank" ColumnName="Rank" />
-                <ScalarProperty Name="Extent" ColumnName="Extent" />
+                <ScalarProperty Name="ID_rank" ColumnName="ID_rank" />
+                <ScalarProperty Name="ID_extent" ColumnName="ID_extent" />
                 <ScalarProperty Name="EmplEnable" ColumnName="EmplEnable" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -924,6 +989,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Extent">
+            <EntityTypeMapping TypeName="SpecialForWPFSafModel.Extent">
+              <MappingFragment StoreEntitySet="Extent">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Extent_name" ColumnName="Extent_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Faculty">
             <EntityTypeMapping TypeName="SpecialForWPFSafModel.Faculty">
               <MappingFragment StoreEntitySet="Faculty">
@@ -938,6 +1011,14 @@
               <MappingFragment StoreEntitySet="Job_title">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name_jod_title" ColumnName="Name_jod_title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rank">
+            <EntityTypeMapping TypeName="SpecialForWPFSafModel.Rank">
+              <MappingFragment StoreEntitySet="Rank">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Rank_name" ColumnName="Rank_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
