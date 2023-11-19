@@ -26,7 +26,11 @@ namespace WpfAppHellRaid.Pages
         public ExamsList()
         {
             InitializeComponent();
-
+            if(App.isEmployee == false)
+            {
+                DelExam.Visibility = Visibility.Collapsed;
+                AddExam.Visibility = Visibility.Collapsed;
+            }
             ListRefresh();
             ExamsListView.ItemsSource = App.DataBase.Exasm.Where(x => x.ExamEnable == true).ToList();
             DateSortCB.SelectedIndex = 0;

@@ -41,12 +41,21 @@ namespace WpfAppHellRaid.Components
     }
     internal class PageComponent
     {
+        private string v;
+        private Menu menu;
+
         public string Title { get; set;}
         public Page Page { get; set; }
         public PageComponent(string title, Page page)
         {
             Title = title;
             Page = page;
+        }
+
+        public PageComponent(string v, Menu menu)
+        {
+            this.v = v;
+            this.menu = menu;
         }
     }
 }

@@ -26,7 +26,9 @@ namespace WpfAppHellRaid.Pages.AboutStudents
         public StudentList()
         {
             InitializeComponent();
-            ListRefresh();
+            if (App.isEmployee == false)
+                AddStud.Visibility = Visibility.Collapsed;
+                ListRefresh();
             SpecSortCB.SelectedIndex = 0;
             NameSortCB.SelectedIndex = 0;
         }

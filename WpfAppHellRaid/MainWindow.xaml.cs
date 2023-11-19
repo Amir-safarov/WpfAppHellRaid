@@ -27,7 +27,7 @@ namespace WpfAppHellRaid
         {
             InitializeComponent();
             ModernNavigation.mainWindow = this;
-            ModernNavigation.NextPage(new PageComponent("Авторизация",new ListsMenu()));
+            ModernNavigation.NextPage(new PageComponent("Авторизация",new Authorization()));
         }
 
         private void BackBTN_Click(object sender, RoutedEventArgs e)

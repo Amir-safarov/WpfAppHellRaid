@@ -27,28 +27,33 @@ namespace WpfAppHellRaid.Components.UserControls
         public StudentUserControl(Student student)
         {
             InitializeComponent();
+            if (App.isEmployee == false)
+            {
+                Edit_BTN.Visibility = Visibility.Collapsed;
+                Remove_BTN.Visibility = Visibility.Collapsed;
+            }
             _student = student;
-            
-                Stud_ID_TB.Text = $"Номер студента: {_student.ID}";
-                if (_student.Speciality.Name_spec == null)
-                    Stud_ID_spec_TB.Text = $"Специальность: Неизвестно";
-                else
-                    Stud_ID_spec_TB.Text = $"Специальность: {_student.Speciality.Name_spec}";
 
-                if (_student.FIO == null)
-                    Stud_ID_spec_TB.Text = $"Специальность: Неизвестно";
-                else
-                    Stud_FIO_TB.Text = $"Инициалы студента: {_student.FIO}";
+            Stud_ID_TB.Text = $"Номер студента: {_student.ID}";
+            if (_student.Speciality.Name_spec == null)
+                Stud_ID_spec_TB.Text = $"Специальность: Неизвестно";
+            else
+                Stud_ID_spec_TB.Text = $"Специальность: {_student.Speciality.Name_spec}";
 
-                if (_student.AboutStudent == null)
-                    PastStudPlace_TB.Text = $"Неизвсестное учебное заведение";
-                else
-                    PastStudPlace_TB.Text = $"{_student.AboutStudent.School.SchoolTitle.Title_name} №{_student.AboutStudent.School.SchoolNumber}";
+            if (_student.FIO == null)
+                Stud_ID_spec_TB.Text = $"Специальность: Неизвестно";
+            else
+                Stud_FIO_TB.Text = $"Инициалы студента: {_student.FIO}";
 
-                if (_student.AboutStudent == null)
-                    AverageSchoolMark_TB.Text = $"Балл атестата: Неизвестно";
-                else
-                    AverageSchoolMark_TB.Text = $"Балл атестата: {_student.AboutStudent.Average_Mark}";
+            if (_student.AboutStudent == null)
+                PastStudPlace_TB.Text = $"Неизвсестное учебное заведение";
+            else
+                PastStudPlace_TB.Text = $"{_student.AboutStudent.School.SchoolTitle.Title_name} №{_student.AboutStudent.School.SchoolNumber}";
+
+            if (_student.AboutStudent == null)
+                AverageSchoolMark_TB.Text = $"Балл атестата: Неизвестно";
+            else
+                AverageSchoolMark_TB.Text = $"Балл атестата: {_student.AboutStudent.Average_Mark}";
             ExtrainfoSP.Visibility = _canLookExtraInfo == true ? Visibility.Visible : Visibility.Hidden;
         }
 

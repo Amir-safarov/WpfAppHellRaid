@@ -1,0 +1,54 @@
+﻿<Page x:Class="WpfAppHellRaid.Pages.AboutDiscipline.DisciplineList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppHellRaid.Pages.AboutDiscipline"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DisciplineList">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61*"/>
+            <RowDefinition Height="389*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock>Сортировка специальностей</TextBlock>
+                <ComboBox Name="SpecSortCB" >
+                    <ComboBoxItem>В алфавитном порядке</ComboBoxItem>
+                    <ComboBoxItem>В обратном порядке</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20,0,0,0">
+                <TextBlock>Сортировка имен</TextBlock>
+                <ComboBox Name="NameSortCB" >
+                    <ComboBoxItem>В алфавитном порядке</ComboBoxItem>
+                    <ComboBoxItem>В обратном порядке</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20,0,0,0">
+                <TextBlock>Поиск</TextBlock>
+                <TextBox Name="SearchTB" Width="100" ></TextBox>
+            </StackPanel>
+            <Button x:Name="RefreshStud" Margin="20,5,5,0">Обновить</Button>
+            <TextBlock TextWrapping="Wrap" Width="320">Никто не может изменить,удалить или добавить дисциплину. Этим вопросом занимается руководоство данного учебного заведения.</TextBlock>
+        </StackPanel>
+        <Border BorderThickness="3" Grid.Row="1">
+            <ListView Name="DisciplineListView" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="75" DisplayMemberBinding="{Binding  Path = ID}">№</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Faculty.Name_Fac}">Факультет</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Department.Dep_Name}">Кафедра</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding ="{Binding Speciality.Name_spec}">Специальность</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = DiscName}">Дисциплина</GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Valume}">Объем</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+    
+    </Grid>
+</Page>

@@ -25,6 +25,11 @@ namespace WpfAppHellRaid.Pages.AboutEmployee
         public EmployeeList()
         {
             InitializeComponent();
+            if(App.isEmployee == false)
+            {
+                DelEmpl.Visibility = Visibility.Collapsed;
+                AddEmpl.Visibility = Visibility.Collapsed;
+            }
             EmployeeListView.ItemsSource = App.DataBase.Employee.Where(x => x.EmplEnable == true).ToList();
         }
         private void ListRefresh()
