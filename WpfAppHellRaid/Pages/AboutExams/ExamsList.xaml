@@ -37,7 +37,7 @@
              <Button x:Name="RefreshList" Margin="20,5,5,0" Click="RefreshList_Click">Обновить список</Button>
 
         </StackPanel>
-        <Border BorderThickness="3" Grid.Row="1">
+        <Border BorderThickness="3" Grid.Row="1" BorderBrush="#FF6933">
             <ListView Name="ExamsListView" >
                 <ListView.View>
                     <GridView>

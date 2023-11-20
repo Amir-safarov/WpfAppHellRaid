@@ -36,7 +36,7 @@
             <Button x:Name="RefreshStud" Margin="20,5,5,0" Click="RefreshStud_Click" >Обновить</Button>
 
         </StackPanel>
-        <Border BorderThickness="3" Grid.Row="1">
+        <Border BorderThickness="3" Grid.Row="1" BorderBrush="#FF6933">
             <ScrollViewer HorizontalScrollBarVisibility="Disabled">
                 <WrapPanel Name ="ServiceWrap" HorizontalAlignment="Center"></WrapPanel>
             </ScrollViewer>

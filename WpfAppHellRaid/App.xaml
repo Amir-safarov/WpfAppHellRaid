@@ -13,9 +13,9 @@
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="Times New Roman"></Setter>
             <Setter Property="FontSize" Value="18"></Setter>
-            <Setter Property="Background" Value="#E4E5EA"></Setter>
             <Setter Property="Margin" Value="5"></Setter>
             <Setter Property="Background" Value="#FF6933"></Setter>
+            <Setter Property="Height" Value="50"></Setter>
         </Style>
         <Style TargetType="ListView">
             <Setter Property="FontFamily" Value="Times New Roman"></Setter>
@@ -24,6 +24,11 @@
         <Style TargetType="Page">
             <Setter Property="FontFamily" Value="Times New Roman"></Setter>
             <Setter Property="FontSize" Value="18"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Foreground" Value="#010405"></Setter>
         </Style>
     </Application.Resources>
 </Application>

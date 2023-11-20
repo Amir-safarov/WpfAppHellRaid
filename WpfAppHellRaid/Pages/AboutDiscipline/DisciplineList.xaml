@@ -34,17 +34,17 @@
                 <TextBlock>Поиск</TextBlock>
                 <TextBox Name="SearchTB" Width="100" TextChanged="SearchTB_TextChanged" ></TextBox>
             </StackPanel>
-            <Button x:Name="EditDisc" Margin="20,5,5,0" Click="EditDisc_Click">Добавить/Редактировать запись</Button>
+            <Button x:Name="EditDisc" Margin="20,5,5,0" Click="EditDisc_Click" >Добавить/Редактировать запись</Button>
             <Button x:Name="RemDisc" Margin="20,5,5,0" Click="RemDisc_Click" >Удалить запись</Button>
             <Button x:Name="RefreshList" Margin="20,5,5,0" Click="RefreshList_Click">Обновить</Button>
         </StackPanel>
-        <Border BorderThickness="3" Grid.Row="1">
+        <Border BorderThickness="3" Grid.Row="1" BorderBrush="#FF6933">
             <ListView Name="DisciplineListView" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="75" DisplayMemberBinding="{Binding  Path = ID}">№</GridViewColumn>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Department.Faculty.Name_Fac}">Факультет</GridViewColumn>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Department.Dep_Name}">Кафедра</GridViewColumn>
+                        <GridViewColumn Width="230" DisplayMemberBinding="{Binding  Path = Department.Faculty.Name_Fac}">Факультет</GridViewColumn>
+                        <GridViewColumn Width="230" DisplayMemberBinding="{Binding  Path = Department.Dep_Name}">Кафедра</GridViewColumn>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = DiscName}">Дисциплина</GridViewColumn>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding  Path = Volume}">Объем</GridViewColumn>
                     </GridView>

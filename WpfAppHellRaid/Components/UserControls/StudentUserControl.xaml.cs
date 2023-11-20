@@ -41,9 +41,9 @@ namespace WpfAppHellRaid.Components.UserControls
                 Stud_ID_spec_TB.Text = $"Специальность: {_student.Speciality.Name_spec}";
 
             if (_student.FIO == null)
-                Stud_ID_spec_TB.Text = $"Специальность: Неизвестно";
+                Stud_ID_spec_TB.Text = $"Инициалы: Неизвестно";
             else
-                Stud_FIO_TB.Text = $"Инициалы студента: {_student.FIO}";
+                Stud_FIO_TB.Text = $"Инициалы: {_student.FIO}";
 
             if (_student.AboutStudent == null)
                 PastStudPlace_TB.Text = $"Неизвсестное учебное заведение";

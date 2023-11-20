@@ -10,7 +10,9 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image x:Name="imageQr" Height="300" Width="300" ></Image>
+            <Border BorderThickness="3" BorderBrush="#FF6933">
+                <Image x:Name="imageQr" Height="300" Width="300" ></Image>
+            </Border>
         </StackPanel>
     </Grid>
 </Page>
