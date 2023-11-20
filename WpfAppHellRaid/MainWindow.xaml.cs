@@ -41,6 +41,7 @@ namespace WpfAppHellRaid
         private void MenuBTN_Click(object sender, RoutedEventArgs e)
         {
             ModernNavigation.BackAuth();
+            MessageBox.Show("Вы вышли из вашей учетной записи.");
         }
 
         private void QRBTN_Click(object sender, RoutedEventArgs e)
